@@ -33,3 +33,4 @@ proof-records/*.webm
 .dev.vars
 .env
 .env.local
+.tmpwork/
