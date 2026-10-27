@@ -12,7 +12,8 @@
     "smoke": "node scripts/smoke.mjs",
     "e2e:ui": "node scripts/e2e-ui.mjs",
     "e2e:api": "node scripts/e2e-api.mjs",
-    "test": "npm run lint && npm run validate && npm run build && npm run smoke"
+    "test": "npm run lint && npm run validate && npm run build && npm run smoke",
+    "e2e:offline": "node scripts/verify-offline.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
