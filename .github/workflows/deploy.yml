@@ -121,6 +121,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # 必须取回本机构建产物，否则无法比对“线上是否为本次构建”
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: words-dist
+          path: dist
+
       - name: Verify Live Site (HTTP + asset integrity)
         run: |
           # 1. 首页必须返回 200（等待 CDN 传播）
@@ -134,10 +141,22 @@ jobs:
 
           # 2. 线上 HTML 必须与本次构建产物一致（防止部署了但 CDN 仍旧版）
           curl -sS https://words.loongclan.xyz/ -o live.html
-          EXPECTED=$(grep -oP 'assets/index-[A-Za-z0-9_-]+\.js' dist/index.html | head -1)
-          ACTUAL=$(grep -oP 'assets/index-[A-Za-z0-9_-]+\.js' live.html | head -1)
-          echo "expected asset: $EXPECTED"
-          echo "live asset    : $ACTUAL"
+          EXPECTED=$(grep -oP 'assets/index-[A-Za-z0-9_-]+\.js' dist/index.html | head -1 || true)
+          ACTUAL=$(grep -oP 'assets/index-[A-Za-z0-9_-]+\.js' live.html | head -1 || true)
+          echo "expected asset: ${EXPECTED:-<none>}"
+          echo "live asset    : ${ACTUAL:-<none>}"
+
+          # 取不到期望值说明产物缺失，属于 CI 自身故障，必须明确指出而非静默比较
+          if [ -z "$EXPECTED" ]; then
+            echo "::error::Could not read expected bundle from dist/index.html — artifacts missing?"
+            ls -la dist 2>&1 | head -20
+            exit 1
+          fi
+          if [ -z "$ACTUAL" ]; then
+            echo "::error::Could not find any bundle reference in live HTML"
+            exit 1
+          fi
+
           if [ "$EXPECTED" != "$ACTUAL" ]; then
             echo "::error::Live site is serving a stale build (expected $EXPECTED, got $ACTUAL)"
             exit 1
