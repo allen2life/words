@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#B93A32" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>诗藏与文脉 · 国风日课解谜矩阵 · 龙族 (LoongClan)</title>
+    <meta name="description" content="国风版NYT Games文创矩阵：《诗藏》猜千古名句诗眼，《文脉》理华夏典故文脉。每日一题，东方轻解谜。" />
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://words.loongclan.xyz/" />
+    <meta property="og:title" content="诗藏与文脉 · 国风日课解谜矩阵" />
+    <meta property="og:description" content="华夏经典诗词与文脉轻解谜，每日一卷，零注册离线可玩。" />
+    <meta property="og:image" content="/favicon.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="诗藏与文脉 · 龙族生态" />
+    <meta name="twitter:description" content="东方文脉轻解谜矩阵 · 每日零点更新" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <script src="/game-harness.js"></script>
+    <script>
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </head>
+  <body class="bg-[#F6F2E9] text-[#1A1917] antialiased selection:bg-[#B93A32] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

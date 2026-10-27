@@ -1,0 +1,20 @@
+{
+  "name": "诗藏与文脉 · 国风日课解谜矩阵",
+  "short_name": "诗藏文脉",
+  "description": "国风版NYT Games文创矩阵：《诗藏》猜千古名句诗眼，《文脉》理华夏典故文脉。每日一题，东方轻解谜。",
+  "start_url": "/",
+  "id": "xyz.loongclan.words",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F2E9",
+  "theme_color": "#B93A32",
+  "categories": ["games", "education"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

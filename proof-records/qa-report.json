@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "timestamp": "2026-10-27T01:45:17.159Z",
+  "targetUrl": "http://localhost:5173",
+  "proofVideo": "Y:\\sites\\words\\proof-records\\proof_1793065515515.mp4",
+  "stats": {
+    "consoleErrorsCount": 0,
+    "pageErrorsCount": 0,
+    "failedRequestsCount": 0
+  },
+  "errors": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}
