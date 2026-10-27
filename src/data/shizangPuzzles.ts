@@ -1,6 +1,7 @@
 import type { ShizangPuzzle } from '../types/game';
 import { SHIZANG_001 } from './shizang/shard-001.ts';
 import { SHIZANG_002 } from './shizang/shard-002.ts';
+import { SHIZANG_003 } from './shizang/shard-003.ts';
 
 /**
  * 《诗藏》题库总索引。
@@ -14,4 +15,5 @@ import { SHIZANG_002 } from './shizang/shard-002.ts';
 export const SHIZANG_PUZZLES: ShizangPuzzle[] = [
   ...SHIZANG_001,
   ...SHIZANG_002,
+  ...SHIZANG_003,
 ];
