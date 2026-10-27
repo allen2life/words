@@ -1,20 +1,25 @@
-name: CI & Deployment Pipeline
+name: CI & Deployment Pipeline (words.loongclan.xyz)
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
   pull_request:
-    branches: [ main, master ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '22'
 
 jobs:
   build-and-test:
-    name: Lint, Build & Headless Playtest
+    name: Lint, Typecheck, Build & Headless Playtest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -23,26 +28,38 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'npm'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Oxlint (Zero-Error Verification)
+      - name: Lint (Oxlint)
         run: npm run lint
 
-      - name: Compile & Production Build
+      - name: Typecheck & Production Build
         run: npm run build
 
-      - name: Install Playwright Browsers
+      - name: Verify Build Output
+        run: |
+          test -f dist/index.html || { echo "::error::dist/index.html missing"; exit 1; }
+          echo "Build OK — $(du -sh dist | cut -f1) in $(find dist -type f | wc -l) files"
+
+      - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run Autonomous QA & Playtest Verification
+      - name: Headless Smoke Test
         run: |
-          npx vite preview --port 5173 --host &
-          sleep 3
-          node scripts/qa-runner.mjs --url http://localhost:5173 --duration 12
+          npx vite preview --port 4173 --host 127.0.0.1 &
+          PREVIEW_PID=$!
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://127.0.0.1:4173/ && break
+            sleep 1
+          done
+          node scripts/smoke.mjs --url http://127.0.0.1:4173
+          STATUS=$?
+          kill $PREVIEW_PID 2>/dev/null || true
+          exit $STATUS
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
@@ -51,31 +68,76 @@ jobs:
           path: dist/
           retention-days: 7
 
+      - name: Upload QA Evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-evidence
+          path: proof-records/*.png
+          retention-days: 7
+          if-no-files-found: ignore
+
   deploy-pages:
-    name: Deploy to Cloudflare Pages / GitHub Pages
+    name: Deploy to Cloudflare Pages
     needs: build-and-test
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
           name: words-dist
           path: dist
 
+      - name: Verify Required Secrets
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN secret is missing — cannot deploy."
+            exit 1
+          fi
+          if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "::error::CLOUDFLARE_ACCOUNT_ID secret is missing — cannot deploy."
+            exit 1
+          fi
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
-        if: env.CLOUDFLARE_API_TOKEN != ''
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy dist --project-name=loongclan-words --branch=main
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=shizangwenmai --branch=main
 
-      - name: Deploy to GitHub Pages Fallback
-        uses: peaceiris/actions-gh-pages@v4
+  verify-production:
+    name: Verify Production (words.loongclan.xyz)
+    needs: deploy-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          cname: words.loongclan.xyz
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Wait for Propagation & HTTP 200
+        run: |
+          for i in $(seq 1 20); do
+            CODE=$(curl -s -o /dev/null -w '%{http_code}' https://words.loongclan.xyz/ || echo 000)
+            echo "attempt $i → HTTP $CODE"
+            [ "$CODE" = "200" ] && exit 0
+            sleep 10
+          done
+          echo "::error::words.loongclan.xyz did not return 200"
+          exit 1
+
+      - name: Install Dependencies & Playwright
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Live Production Smoke Test
+        run: node scripts/smoke.mjs --url https://words.loongclan.xyz

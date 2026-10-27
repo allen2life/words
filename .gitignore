@@ -25,3 +25,11 @@ dist-ssr
 package-lock.json.bak
 proof-records/*.mp4
 proof-records/*.webm
+
+# 本地工具缓存与凭据（绝不入库）
+.npm-cache
+.wrangler-config
+.wrangler
+.dev.vars
+.env
+.env.local
