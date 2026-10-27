@@ -100,14 +100,40 @@ export class LoongSyncClient {
 
   /**
    * 查询快照元数据（版本号与大小，用于启动时快速比对是否需要同步）
+   *
+   * 平台侧 `/sync/meta` 在快照存在时要求鉴权（防止第三方探测某口令是否在用云端）。
+   *
+   * ⚠️ 平台实现细节：该路由仅从 **query 参数** 读取 `syncToken`，请求体中的同名字段会被忽略。
+   * 若只放在 body 里会得到 401 token_mismatch。因此这里显式走 query 传参。
    */
   async getSnapshotMeta(
     req: SnapshotMetaRequest
   ): Promise<ApiResponse<SnapshotMetaResult>> {
-    const res = await fetch(`${this.baseUrl}/api/v1/sync/meta`, {
+    let userHash = req.userHash;
+    let syncToken = req.syncToken;
+
+    if (req.kouling) {
+      if (!LoongIdentity.isValid(req.kouling)) {
+        return { code: 400, err_code: 'kouling_format', message: '口令格式有误' };
+      }
+      if (!userHash) userHash = LoongIdentity.deriveUserHash(req.kouling);
+      if (!syncToken) syncToken = LoongIdentity.deriveSyncToken(req.kouling);
+    }
+
+    if (!userHash || !syncToken) {
+      return { code: 400, err_code: 'auth_missing', message: '缺少 userHash 或 syncToken' };
+    }
+
+    const params = new URLSearchParams({
+      appId: req.appId,
+      userHash,
+      syncToken
+    });
+
+    const res = await fetch(`${this.baseUrl}/api/v1/sync/meta?${params.toString()}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(req)
+      body: JSON.stringify({})
     });
 
     return res.json();

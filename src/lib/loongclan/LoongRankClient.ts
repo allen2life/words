@@ -20,6 +20,12 @@ export class LoongRankClient {
   async submitScore(
     req: SubmitScoreRequest
   ): Promise<ApiResponse<SubmitScoreResult>> {
+    // 平台侧仅校验 |score| <= RANK_MAX_ABS_SCORE，未设置非负下限。
+    // 本产品得分恒为非负整数，因此在客户端先做正向校验，避免负分上榜。
+    if (typeof req.score !== 'number' || !Number.isFinite(req.score) || req.score < 0) {
+      return { code: 400, err_code: 'invalid_score', message: '成绩必须为非负数值' };
+    }
+
     let userHash = req.userHash;
     let syncToken = req.syncToken;
 

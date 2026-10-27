@@ -48,6 +48,12 @@ export interface DownloadSnapshotResult<T = any> {
 export interface SnapshotMetaRequest {
   appId: string;
   userHash: string;
+  /**
+   * 元信息接口同样需要鉴权（防止第三方探测某口令是否在用云端）。
+   * 快照不存在时服务端先返回 404，此时不会校验该字段。
+   */
+  syncToken?: string;
+  kouling?: string;
 }
 
 export interface SnapshotMetaResult {
