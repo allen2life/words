@@ -65,7 +65,7 @@ GitHub Actions (.github/workflows/deploy.yml)
 - [ ] 界面常驻区只显示昵称，无明文口令
 - [ ] 口令输入为三个独立输入框 + `type="password"`
 - [ ] 凭据弹窗默认脱敏（`LoongIdentity.mask`）
-- [ ] 断网状态下核心玩法可玩（DevTools → Offline 验证）
+- [x] 断网状态下核心玩法可玩（`npm run e2e:offline` 自动验证 7 项）
 
 ### 3.3 内容校验（文化类产品特有）
 
@@ -172,8 +172,9 @@ Cloudflare Pages 保留全部历史部署：
 
 | 监控项 | 手段 | 阈值 |
 |--------|------|------|
-| 站点可用性 | CI `verify-production` job（每次发布） | HTTP ≠ 200 即红 |
-| 运行时错误 | Playwright 冒烟（console/page error） | 任意 error 即红 |
+| 站点可用性 | CI `verify-production` job | HTTP ≠ 200 或线上 bundle 与构建不一致即红 |
+| 运行时错误 | CI `browser-smoke-production`（Playwright） | 任意 console/page error 即红 |
+| 离线可用 | `npm run e2e:offline`（发布前手动） | 断网无法启动即阻断发布 |
 | API 可用性 | 平台 `/health` 端点 | 人工周检 |
 | 题库库存 | 人工周检 | < 30 天预警 |
 
