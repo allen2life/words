@@ -39,6 +39,9 @@ jobs:
 
       - name: Validate Puzzle Content
         run: node scripts/validate-content.mjs
+        env:
+          # 内容库存目标：扩充到 365 天后由 365 生效（当前分阶段提升）
+          TARGET_DAYS: '20'
 
       - name: Typecheck & Production Build
         run: npm run build

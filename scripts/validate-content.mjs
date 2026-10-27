@@ -160,6 +160,19 @@ console.log(`wenmai puzzles : ${WENMAI_PUZZLES.length}`);
 const tierCount = SHIZANG_PUZZLES.reduce((acc, p) => ((acc[p.tier] = (acc[p.tier] || 0) + 1), acc), {});
 console.log(`tier distribution: ${JSON.stringify(tierCount)}`);
 
+// ─────────────── 库存天数（运营目标：365 天不重复）───────────────
+// 每日消耗 1 题，题库长度即库存天数；低于目标时给出明确缺口。
+const TARGET_DAYS = Number(process.env.TARGET_DAYS || 365);
+const szDays = SHIZANG_PUZZLES.length;
+const wmDays = WENMAI_PUZZLES.length;
+
+console.log(`\n=== Inventory (target ${TARGET_DAYS} days) ===`);
+console.log(`shizang: ${szDays} days  ${szDays >= TARGET_DAYS ? '✅' : `❌ short ${TARGET_DAYS - szDays}`}`);
+console.log(`wenmai : ${wmDays} days  ${wmDays >= TARGET_DAYS ? '✅' : `❌ short ${TARGET_DAYS - wmDays}`}`);
+
+if (szDays < TARGET_DAYS) errors.push(`shizang inventory ${szDays} < target ${TARGET_DAYS} (short ${TARGET_DAYS - szDays})`);
+if (wmDays < TARGET_DAYS) errors.push(`wenmai inventory ${wmDays} < target ${TARGET_DAYS} (short ${TARGET_DAYS - wmDays})`);
+
 if (infos.length) {
   console.log(`\nℹ️  ${infos.length} note(s):`);
   for (const i of infos) console.log(`   - ${i}`);
