@@ -121,26 +121,56 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Verify Live Site (HTTP + asset integrity)
+        run: |
+          # 1. 首页必须返回 200（等待 CDN 传播）
+          for i in $(seq 1 20); do
+            CODE=$(curl -s -o /dev/null -w '%{http_code}' https://words.loongclan.xyz/ || echo 000)
+            echo "attempt $i → HTTP $CODE"
+            [ "$CODE" = "200" ] && break
+            [ "$i" = "20" ] && { echo "::error::words.loongclan.xyz did not return 200"; exit 1; }
+            sleep 10
+          done
+
+          # 2. 线上 HTML 必须与本次构建产物一致（防止部署了但 CDN 仍旧版）
+          curl -sS https://words.loongclan.xyz/ -o live.html
+          EXPECTED=$(grep -oP 'assets/index-[A-Za-z0-9_-]+\.js' dist/index.html | head -1)
+          ACTUAL=$(grep -oP 'assets/index-[A-Za-z0-9_-]+\.js' live.html | head -1)
+          echo "expected asset: $EXPECTED"
+          echo "live asset    : $ACTUAL"
+          if [ "$EXPECTED" != "$ACTUAL" ]; then
+            echo "::error::Live site is serving a stale build (expected $EXPECTED, got $ACTUAL)"
+            exit 1
+          fi
+
+          # 3. 该 JS 资源本身可访问，且非空
+          SIZE=$(curl -sS -o /dev/null -w '%{size_download}' "https://words.loongclan.xyz/$ACTUAL")
+          echo "bundle size: $SIZE bytes"
+          [ "$SIZE" -gt 10000 ] || { echo "::error::bundle suspiciously small ($SIZE bytes)"; exit 1; }
+
+          echo "✅ Production verified: fresh build $ACTUAL ($SIZE bytes) is live."
+
+  # 真实浏览器验证独立成 job：需要 Playwright，耗时较长，
+  # 与「刚部署完是否生效」的关注点分离，任一步失败都能明确定位。
+  browser-smoke-production:
+    name: Browser Smoke (Playwright vs production)
+    needs: verify-production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
-      - name: Wait for Propagation & HTTP 200
-        run: |
-          for i in $(seq 1 20); do
-            CODE=$(curl -s -o /dev/null -w '%{http_code}' https://words.loongclan.xyz/ || echo 000)
-            echo "attempt $i → HTTP $CODE"
-            [ "$CODE" = "200" ] && exit 0
-            sleep 10
-          done
-          echo "::error::words.loongclan.xyz did not return 200"
-          exit 1
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Install Dependencies & Playwright
-        run: |
-          npm ci
-          npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Live Production Smoke Test
         run: node scripts/smoke.mjs --url https://words.loongclan.xyz
