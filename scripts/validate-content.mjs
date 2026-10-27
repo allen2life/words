@@ -134,6 +134,24 @@ for (const p of WENMAI_PUZZLES) {
   if (tiers.size !== 4) warn(`${tag} tier coverage is ${tiers.size}/4 (${[...tiers].join(',')})`);
 }
 
+// 跨期重复：同一个词条在多期里反复出现会削弱题目的新鲜感（提示而非失败）
+const wordOwners = new Map();
+for (const p of WENMAI_PUZZLES) {
+  for (const g of p.groups) {
+    for (const w of g.words) {
+      if (!wordOwners.has(w)) wordOwners.set(w, []);
+      wordOwners.get(w).push(p.id);
+    }
+  }
+}
+const repeated = [...wordOwners.entries()].filter(([, ids]) => ids.length > 1);
+if (repeated.length) {
+  warn(
+    `${repeated.length} word(s) reused across wenmai issues: ` +
+      repeated.map(([w, ids]) => `"${w}"(${ids.join(',')})`).join(' ')
+  );
+}
+
 // ─────────────────────────── 汇总 ───────────────────────────
 console.log(`\n=== Content validation ===`);
 console.log(`shizang puzzles: ${SHIZANG_PUZZLES.length}`);

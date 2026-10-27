@@ -31,7 +31,7 @@
 | 3 | 用户数据主权 (Obsidian 范式) | 快照上传/下载由用户主动触发，支持导出与注销 | ✅ |
 | 4 | 通用同步 API | 接入 `api.loongclan.xyz`，appId=`words` | ✅ |
 | 5 | 通用排行榜 API | 日榜 / 总榜接入 | ✅ |
-| 6 | UI 英语默认 (English-First) | `getInitialLocale()` 默认 `en`，可切中文 | 🚧 进行中 |
+| 6 | UI 英语默认 (English-First) | 默认 `en`，两游戏+导航+全部弹窗已 i18n（186 键/语言） | ✅ |
 
 ---
 
@@ -68,9 +68,11 @@
 |---|------|------|--------|------|
 | 1 | `package.json` 把 win32 rolldown binding 写进 dependencies，Linux/CI 构建失败 | 阻断发布 | P0 | ✅ 已移除 |
 | 2 | `docs/api_requirements.md` 描述的 API 契约（Ed25519 / PUT snapshot）与实际平台（三维口令 / POST upload）不一致 | 误导后续开发 | P1 | 待修订 |
-| 3 | 大量组件硬编码中文，违反英语默认铁律 | 违反平台规范 | P1 | 进行中 |
-| 4 | 题库仅 8 首诗藏，按日轮转约 8 天重复 | 留存受损 | P1 | 扩充中 |
-| 5 | `qa-runner.mjs` 硬编码 Windows Chrome 路径 | 本机与 CI 不可用 | P2 | 待改 |
+| 3 | 组件硬编码中文（已抽取 75 键，双语 186 键对齐） | 违反平台规范 | P1 | ✅ 已解决 |
+| 4 | 题库库存 18 首 / 8 期，撑不住每日轮换 | 留存受损 | P1 | 🚧 诗藏已扩至 30 首，文脉待补 |
+| 5 | `qa-runner.mjs` 硬编码 Windows 路径与中文选择器 | 本机与 CI 不可用 | P2 | ✅ 已由 smoke+e2e-ui 取代 |
+| 6 | 平台 `/sync/meta` 只认 query 中的 syncToken | 同步流程 401 断链 | P1 | ✅ 客户端已兼容 |
+| 7 | 平台排行榜无负分下限 | 可刷负分 | P2 | ✅ 客户端已拦截，建议平台补 |
 
 ---
 
@@ -81,27 +83,31 @@
 - [x] Linux 全新安装 + `npm run build` 通过
 - [x] 冒烟测试：0 console error / 0 page error / 0 failed request
 
-### M1 · 契约对齐（进行中）
-- [ ] 修订 `docs/api_requirements.md` 匹配真实平台 API
-- [ ] QA runner 跨平台化
+### M1 · 契约对齐（已完成）
+- [x] 修订 `docs/api_requirements.md` 匹配真实平台 API（v2.0.0）
+- [x] QA runner 跨平台化，替换为 `smoke.mjs` + `e2e-ui.mjs` + `lib/chrome.mjs`
 
-### M2 · 平台规范合规
-- [ ] 全量 i18n 抽取，英语默认
-- [ ] 口令输入三独立框 + 脱敏 + 掩码复核
-- [ ] 顶栏统一展示昵称而非口令
+### M2 · 平台规范合规（已完成）
+- [x] 全量 i18n 抽取，英语默认（诗藏 39 键 + 文脉/导航/弹窗 36 键）
+- [x] 口令输入三独立框 + 脱敏 + 掩码复核
+- [x] 顶栏统一展示昵称而非口令
 
-### M3 · 内容扩充
-- [ ] 《诗藏》扩充至 60+ 首，覆盖四阶难度与节气
-- [ ] 《文脉》扩充至 30+ 期
+### M3 · 内容扩充（进行中）
+- [x] 《诗藏》18 → 30 首（新增 12 首含登鹳雀楼/春望/江雪等）
+- [x] 内容校验器 `validate-content.mjs` 接入 CI
+- [ ] 《诗藏》继续扩充至 60+
+- [ ] 《文脉》8 → 30+ 期
 
-### M4 · 端到端联调
-- [ ] 同步上传/下载/冲突合并实测
-- [ ] 排行榜提交/查询实测
+### M4 · 端到端联调（已完成）
+- [x] 同步上传/下载/元信息/注销实测（`e2e-api.mjs` 11 项全过）
+- [x] 排行榜提交/查询实测
+- [x] 发现并修复 `/sync/meta` 鉴权传参缺陷、排行榜负分缺口
 
-### M5 · 发布
-- [ ] Cloudflare Pages 部署
-- [ ] `words.loongclan.xyz` 域名绑定与 TLS
-- [ ] 线上冒烟验证
+### M5 · 发布（已完成）
+- [x] Cloudflare Pages 部署（项目 `shizangwenmai`）
+- [x] `words.loongclan.xyz` 域名绑定与 TLS
+- [x] GitHub `allen2life/words` + Actions 三段流水线全绿
+- [x] 线上冒烟 + UI 回归 10/10 通过
 
 ---
 
@@ -112,8 +118,10 @@
 | 类型 | `tsc -b` | 零错误 |
 | 静态 | `oxlint` | 零 error |
 | 构建 | `vite build` | 成功产物 |
+| 内容 | `validate-content.mjs` | 零不变量违规 |
 | 冒烟 | Playwright 首页加载 | 0 console/page error |
-| 回归 | Playwright 全流程自玩 | 通过 |
+| 回归 | Playwright 全流程自玩 (`e2e-ui.mjs`) | 10/10 |
+| 接口 | `e2e-api.mjs` 对线上 API | 11/11 |
 | 线上 | 部署后域名访问 | 200 + 无错误 |
 
 ---
