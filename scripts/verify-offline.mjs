@@ -69,7 +69,16 @@ try {
     check('offline reload served from cache', false, e.message);
   });
 
-  const offlineReady = await page.evaluate(() => !!(window.__GAME__ && window.__GAME__.isReady)).catch(() => false);
+  // 离线状态下资源来自 SW 缓存，启动会比在线稍慢，必须显式等待而非瞬时判断。
+  let offlineReady = false;
+  try {
+    await page.waitForFunction(() => !!(window.__GAME__ && window.__GAME__.isReady === true), {
+      timeout: 20000,
+    });
+    offlineReady = true;
+  } catch {
+    offlineReady = false;
+  }
   check('app boots with network offline', offlineReady);
 
   if (offlineReady) {
