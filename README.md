@@ -122,6 +122,7 @@ npx wrangler pages deploy dist --project-name=shizangwenmai --branch=main
 
 | 文档 | 内容 |
 |------|------|
+| [docs/STATUS.md](docs/STATUS.md) | **项目状态总览：上线事实、门禁、修复记录** |
 | [docs/RND_PLAN.md](docs/RND_PLAN.md) | 研发计划：架构、技术债、里程碑 |
 | [docs/OPERATIONS_PLAN.md](docs/OPERATIONS_PLAN.md) | 运营计划：内容节奏、增长、指标、风险 |
 | [docs/RELEASE_PLAN.md](docs/RELEASE_PLAN.md) | 发布计划：发布检查单、流程、回滚、监控 |
