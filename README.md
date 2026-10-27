@@ -1,114 +1,134 @@
 # 诗藏与文脉 (Words · words.loongclan.xyz)
 
-> **龙族 (LoongClan · loongclan.xyz) 旗下核心国风日课解谜矩阵**  
+> **龙族 (LoongClan · loongclan.xyz) 旗下核心国风日课解谜矩阵**
 > *Classical Chinese Wordle & Connections · 传承华夏文脉，东方轻解谜*
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
-[![PWA Ready](https://img.shields.io/badge/PWA-Offline%20First-orange.svg)]()
-[![LoongClan Ecosystem](https://img.shields.io/badge/Ecosystem-loongclan.xyz-red.svg)](https://loongclan.xyz)
+[![Build](https://img.shields.io/badge/CI-passing-brightgreen.svg)](https://github.com/allen2life/words/actions)
+[![PWA](https://img.shields.io/badge/PWA-Offline%20First-orange.svg)]()
+[![Ecosystem](https://img.shields.io/badge/Ecosystem-loongclan.xyz-red.svg)](https://loongclan.xyz)
+
+**线上地址**：<https://words.loongclan.xyz>
 
 ---
 
-## 📖 项目简介 (Introduction)
+## 📖 项目简介
 
-《诗藏与文脉》是龙族文化矩阵下的核心轻解谜 Web 应用，由两大沉浸式玩法组成：
+两大沉浸式每日玩法：
 
-1. **《诗藏》(Poetic Eye · 诗眼推敲)**：
-   - 东方诗词版 Wordle。玩家面对千古名句（涵盖唐、宋、先秦、汉魏），在六次机会内推敲出被隐去的千古“诗眼”关键字。
-   - 包含平水韵声调、部首偏旁、意境修辞三重渐进式“墨韵提示”，通关后呈现深度全诗赏析与诗人小传。
-2. **《文脉》(Literary Pulse · 典故文脉)**：
-   - 华夏文化版 Connections。玩家从 16 个打乱的文化词条方块中，探寻四类内在文脉关联（四字一组），层层归纳论证。
-   - 分为四重难度色阶：
-     - 🟨 **蒙学入门 (Yellow)**：基础文学常识与传统四艺
-     - 🟩 **诗文通识 (Green)**：名篇名句与边塞山川
-     - 🟦 **古文学高阶 (Blue)**：考据典籍与音律技法
-     - 🟪 **文脉宗师 (Purple)**：诸子百家、上古图腾与深邃哲理
+| 产品 | 原型 | 玩法 | 容错 |
+|------|------|------|------|
+| **《诗藏》** Poetic Eye | Wordle | 千古名句挖空一字，六次内推敲出"诗眼" | 6 次 |
+| **《文脉》** Literary Pulse | Connections | 16 个文化词条，4 个一组归并四脉 | 4 次 |
 
----
+产品哲学：**以古文化为骨，以解谜为形，由谜入悟**。
 
-## 🏛️ 龙族平台核心铁律遵循 (LoongClan Standards)
+### 《诗藏》特色
 
-本项目 100% 恪守龙族生态（loongclan.xyz）六大开发运营铁律：
+三重渐进式"墨韵提示"（随尝试次数逐重解锁）：
 
-1. ⚡ **纯单机可玩 / 离线优先 (Local-First)**：
-   - 无网络也能流畅运行，核心题库与确定性日历种子（`dailySeeder.ts`）完全内置。
-   - 借助 Service Worker 与 Web App Manifest，支持 iOS/Android 添加至手机桌面全屏离线体验。
-2. 🔑 **三维口令与隐私保密 (LoongPass · SPEC_IDENTITY)**：
-   - `part1.part2.part3` 无感识别，**零注册、免邮箱、免手机号、免密码**。
-   - 客户端采用标准 UTF-8 字节流双哈希派生（`UserHash` 公开标识 + `SyncToken` 私密令牌），口令明文绝对不上传。
-   - 常驻界面严格只显示“用户昵称”，凭据查看界面提供防窥遮罩（如 `loong.***.***`）。
-3. 🛡️ **数据主权归用户 (Obsidian 范式 · SPEC_SYNC)**：
-   - 本地 `localStorage` 为唯一真实真相源，支持手动备份到云端、多设备拉取、一键全量导出与彻底注销。
-4. 🏆 **通用全网排行榜 (SPEC_RANK)**：
-   - 每日零点自动更新全网战报，支持防刷与匿名排行榜。
-5. 🌍 **全球化英语优先交互 (Global English-First UI · SPEC_I18N)**：
-   - 默认交互语言统一为英语（English Default），并提供一键无缝切换至简体中文（zh-Hans）。
+1. **音韵** — 平仄归属
+2. **部首** — 偏旁与字义关联
+3. **意象** — 修辞手法与画面感
+
+通关后呈现全诗赏析与诗人小传。**这是相对 Wordle 的核心差异化价值：猜中只是开始，读懂才是目的。**
+
+难度四阶：🟨 蒙学入门 / 🟩 诗文通识 / 🟦 古文学高阶 / 🟪 文脉宗师
 
 ---
 
-## 🛠️ 技术选型 (Tech Stack)
+## 🏛️ 平台铁律遵循
 
-- **前端框架**：React 19 + TypeScript (Strict)
-- **工程构建**：Vite 8 + `@tailwindcss/vite` (Tailwind CSS v4)
-- **代码质检**：Oxlint (Rust 级极速代码规约检查，0 错误 0 告警)
-- **动效与视觉**：HTML5 Canvas 水墨微波粒子系统 (`AmbientCanvas.tsx`) + `canvas-confetti`
-- **图标系统**：Lucide React
-- **自动化测试**：Playwright Headless QA Runner (`qa-runner.mjs`)，自带 60FPS 帧率检测与自动化实机录屏证明
-- **边缘托管**：Cloudflare Pages / GitHub Pages，支持自动化 CI/CD
+| # | 铁律 | 落实 |
+|---|------|------|
+| 1 | 纯单机可玩 / 离线优先 | 题库内置 + `dailySeeder.ts` 确定性种子；SW + Manifest 支持安装离线 |
+| 2 | 三维口令 / 零明文 | `LoongIdentity.ts` 双哈希派生，口令不出机 |
+| 3 | 数据主权（Obsidian 范式） | 本地为唯一真相源，手动上传/下载/导出/注销 |
+| 4 | 通用同步 API | `api.loongclan.xyz`，`appId=words` |
+| 5 | 通用排行榜 API | 日榜 / 总榜 |
+| 6 | 英语优先 UI | 默认 `en`，一键切 `zh-Hans` |
 
 ---
 
-## 🚀 本地开发与验证 (Local Development)
+## 🛠️ 技术栈
 
-### 1. 安装依赖
+- **框架**：React 19 + TypeScript (Strict)
+- **构建**：Vite 8 + Tailwind CSS v4 (`@tailwindcss/vite`)
+- **质检**：Oxlint
+- **动效**：Canvas 水墨粒子 (`AmbientCanvas`) + `canvas-confetti`
+- **测试**：Playwright（`smoke.mjs` / `e2e-ui.mjs`）+ 内容校验 (`validate-content.mjs`)
+- **托管**：Cloudflare Pages（`shizangwenmai` 项目）
+
+---
+
+## 🚀 本地开发
+
 ```bash
-npm install
+npm install --include=dev     # 本机 NODE_ENV=production 时必须带 --include=dev
+npm run dev                   # http://localhost:5173
 ```
 
-### 2. 启动开发服务器
-```bash
-npm run dev
-```
-访问 `http://localhost:5173/` 即可开始体验。
+> 若 `npm` 报 `EROFS` 缓存错误（HOME 下缓存目录只读），加 `--cache ./.npm-cache`。
 
-### 3. 代码规约与质量检查
+### 质量门禁
+
 ```bash
-npm run lint
+npm run lint       # Oxlint，零 error
+npm run validate   # 题库内容不变量校验
+npm run build      # tsc -b + vite build
+npm test           # lint + validate + build + smoke 一条龙
 ```
 
-### 4. 生产环境编译构建
-```bash
-npm run build
-```
-构件将输出至 `dist/` 目录。
+### 测试脚本
 
-### 5. 自动化无头自测与实机录屏 (Autonomous QA)
+| 脚本 | 作用 |
+|------|------|
+| `npm run smoke` | 首页加载 + `__GAME__` 探针，验证 0 console/page error |
+| `npm run e2e:ui` | 模拟真实玩家通关一局，验证英语默认、字盘、提交、提示解锁、模式切换 |
+| `npm run e2e:api` | 对线上 `api.loongclan.xyz` 做 11 项同步/排行榜断言 |
+
+需先起预览服务：`npx vite preview --port 4173 --host 127.0.0.1`
+
 ```bash
-npx vite preview --port 5173 &
-node scripts/qa-runner.mjs --url http://localhost:5173 --duration 12
+npm run smoke -- --url http://127.0.0.1:4173
+npm run e2e:ui -- --url https://words.loongclan.xyz --lang en
+npm run e2e:api
 ```
-测试完成后将自动在 `proof-records/` 下输出自动化录屏 MP4 与 `qa-report.json`。
 
 ---
 
-## 🌐 线上发布与部署 (Deployment)
+## 🌐 部署
 
-### 生产域名
-- **应用主域**：`https://words.loongclan.xyz/`
-- **《诗藏》直达**：`https://words.loongclan.xyz/?mode=shizang`
-- **《文脉》直达**：`https://words.loongclan.xyz/?mode=wenmai`
-- **龙族官网总站**：`https://loongclan.xyz/`
+**自动化**：推送到 `main` → GitHub Actions 三阶段流水线
 
-### 自动化发布流程 (GitHub Actions)
-项目在 `.github/workflows/deploy.yml` 预置了自动化发布流水线：
-1. 推送代码至 `main` 分支；
-2. 自动运行 `npm run lint` 和 `npm run build`；
-3. 自动启动 Playwright 无头浏览器进行端到端自动化测试与控制台报错检测；
-4. 自动部署至 Cloudflare Pages 与 GitHub Pages。
+1. `build-and-test`：lint → 内容校验 → 构建 → 无头冒烟
+2. `deploy-pages`：`wrangler pages deploy dist --project-name=shizangwenmai`
+3. `verify-production`：轮询线上 200 + 对生产环境跑冒烟
+
+**手动应急**：
+
+```bash
+set -a && . ~/.profile && set +a
+export WRANGLER_HOME=/data/sites/words/.wrangler-config
+export XDG_CONFIG_HOME=/data/sites/words/.wrangler-config
+npx wrangler pages deploy dist --project-name=shizangwenmai --branch=main
+```
+
+> ⚠️ Pages 项目名为 `shizangwenmai`（`words.pages.dev` 已被第三方占用），
+> 自定义域 `words.loongclan.xyz` 通过 CNAME → `shizangwenmai.pages.dev` 绑定。
 
 ---
 
-## 📜 许可证 (License)
+## 📚 文档索引
 
-本项目基于 [MIT 许可证](LICENSE) 开源。
+| 文档 | 内容 |
+|------|------|
+| [docs/RND_PLAN.md](docs/RND_PLAN.md) | 研发计划：架构、技术债、里程碑 |
+| [docs/OPERATIONS_PLAN.md](docs/OPERATIONS_PLAN.md) | 运营计划：内容节奏、增长、指标、风险 |
+| [docs/RELEASE_PLAN.md](docs/RELEASE_PLAN.md) | 发布计划：发布检查单、流程、回滚、监控 |
+| [docs/api_requirements.md](docs/api_requirements.md) | 服务端集成：三维口令、同步、排行榜真实契约 |
+
+---
+
+## 📜 许可证
+
+MIT
