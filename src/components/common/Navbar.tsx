@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div className="hidden sm:block">
               <h1 className="text-base font-bold tracking-widest text-[#1C1A17] font-serif">
-                {locale === 'en' ? 'Words · Poetic Eye' : '诗藏 · 文脉'}
+                {t('nav.brand')}
               </h1>
               <p className="text-[10px] text-[#7C7469] tracking-wider">
                 {t('app.subtitle')}
@@ -108,7 +108,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Calendar size={13} className="text-[#8C6036]" />
               <span className="hidden md:inline">
-                {locale === 'en' ? `Vol. ${dailyInfo.dayNumber}` : dailyInfo.formattedChineseDate}
+                {locale === 'en'
+                  ? t('nav.volume_badge', { dayNumber: dailyInfo.dayNumber })
+                  : dailyInfo.formattedChineseDate}
               </span>
               <span className="md:hidden">#{dailyInfo.dayNumber}</span>
             </button>
@@ -129,7 +131,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ChevronLeft size={16} />
                   </button>
                   <div className="text-center">
-                    <div className="font-bold text-[#1C1A17]">Vol. {dailyInfo.dayNumber}</div>
+                    <div className="font-bold text-[#1C1A17]">
+                      {t('nav.volume_badge', { dayNumber: dailyInfo.dayNumber })}
+                    </div>
                     <div className="text-[10px] text-[#7A7165]">{dailyInfo.dateStr}</div>
                   </div>
                   <button
@@ -198,7 +202,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={toggleLocale}
             className="flex items-center gap-1 px-2 py-1 bg-[#ECE4D0] hover:bg-[#E0D5BE] border border-[#CFC3A5] rounded text-xs font-semibold text-[#453F37] transition ml-0.5"
-            title="Switch Language / 切换语言"
+            title={t('nav.lang_switch_title')}
           >
             <Globe size={13} className="text-[#8C6036]" />
             <span>{locale === 'en' ? '中' : 'EN'}</span>

@@ -9,6 +9,7 @@ import { ExegesisModal } from './ExegesisModal';
 import { recordWenmaiResult } from '../../utils/storage';
 import type { ShareCardData } from '../../utils/shareCard';
 import { ACHIEVEMENTS } from '../../data/achievements';
+import { useI18n } from '../../i18n';
 
 interface WenmaiGameProps {
   puzzle: WenmaiPuzzle;
@@ -41,6 +42,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
   onUpdateStats,
   onOpenShareModal,
 }) => {
+  const { t } = useI18n();
   const isAlreadySolved = stats.solvedWenmaiIds.includes(puzzle.id);
   const [remainingWords, setRemainingWords] = useState<string[]>(() =>
     isAlreadySolved ? [] : shuffleArray(puzzle.groups.flatMap((g) => g.words))
@@ -67,7 +69,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
       setSelectedWords(selectedWords.filter((w) => w !== word));
     } else {
       if (selectedWords.length >= 4) {
-        showToast('每次归类仅可选取 4 个词条');
+        showToast(t('wenmai.toast_max_select'));
         return;
       }
       setSelectedWords([...selectedWords, word]);
@@ -85,7 +87,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
 
   const handleSubmit = () => {
     if (selectedWords.length !== 4 || isGameOver) {
-      showToast('请恰好选取 4 个同属一脉的词条');
+      showToast(t('wenmai.toast_need_four'));
       return;
     }
 
@@ -101,7 +103,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
       setSolvedGroups(nextSolved);
       setRemainingWords(remainingWords.filter((w) => !selectedWords.includes(w)));
       setSelectedWords([]);
-      showToast(`✨ 契合！【${matchedGroup.theme}】文脉贯通！`);
+      showToast(t('wenmai.toast_group_solved', { theme: matchedGroup.theme }));
 
       if (nextSolved.length === 4) {
         setIsGameOver(true);
@@ -132,9 +134,9 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
       setTimeout(() => setShakeGrid(false), 500);
 
       if (isOneAway) {
-        showToast('💡 差之毫厘！所选词中有 3 个属于同一文脉，请再辨析！');
+        showToast(t('wenmai.toast_one_away'));
       } else {
-        showToast('四词脉络不合，沉香渐消');
+        showToast(t('wenmai.toast_no_match'));
       }
 
       if (nextMistakes <= 0) {
@@ -171,15 +173,17 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
     const mistakesUsed = MAX_MISTAKES - mistakesRemaining;
     const summary =
       mistakesRemaining > 0
-        ? `四脉通达 · ${mistakesUsed === 0 ? '零失误大圆满' : `耗香${mistakesUsed}柱`}`
-        : '四脉既毕 · 掩卷通悟';
+        ? mistakesUsed === 0
+          ? t('wenmai.share_summary_perfect')
+          : t('wenmai.share_summary_spent', { count: mistakesUsed })
+        : t('wenmai.share_summary_closed');
 
     const shareData: ShareCardData = {
-      gameTitle: `《文脉》第 ${dayNumber} 期`,
+      gameTitle: t('wenmai.share_game_title', { day: dayNumber }),
       dateStr,
       formattedDate,
-      highlightPoem: `【${puzzle.title}】16词分类归宗`,
-      author: '华夏典故 · 诸子思想 · 传世名篇',
+      highlightPoem: t('wenmai.share_highlight', { title: puzzle.title }),
+      author: t('wenmai.share_author'),
       resultSummary: summary,
       blocks,
       streak: stats.wenmaiStreak,
@@ -197,7 +201,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
           {puzzle.title}
         </h2>
         <p className="text-xs text-[#7A7165] mt-1 tracking-wider">
-          找寻 16 个华夏词条间的文化渊源，4 个一组，归并四脉
+          {t('wenmai.board_instruction')}
         </p>
       </div>
 
@@ -241,7 +245,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
           className="px-3 py-2 bg-[#FAF6EE] hover:bg-[#EDE5D6] disabled:opacity-40 border border-[#D5CAA8] rounded-lg text-xs font-medium text-[#4D463E] flex items-center gap-1.5 transition shadow-xs"
         >
           <Shuffle size={14} />
-          <span>洗牌理叙</span>
+          <span>{t('wenmai.shuffle')}</span>
         </button>
 
         <button
@@ -250,7 +254,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
           className="px-3 py-2 bg-[#FAF6EE] hover:bg-[#EDE5D6] disabled:opacity-40 border border-[#D5CAA8] rounded-lg text-xs font-medium text-[#4D463E] flex items-center gap-1.5 transition shadow-xs"
         >
           <RotateCcw size={14} />
-          <span>重置所选</span>
+          <span>{t('wenmai.reset_selection')}</span>
         </button>
 
         <button
@@ -259,7 +263,7 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
           className="px-5 py-2 bg-[#2E4B6E] hover:bg-[#233A56] disabled:opacity-40 disabled:hover:bg-[#2E4B6E] text-white rounded-lg text-xs font-serif font-bold tracking-widest flex items-center gap-1.5 transition shadow-sm"
         >
           <Check size={15} />
-          <span>定夺脉络 ({selectedWords.length}/4)</span>
+          <span>{t('wenmai.submit', { count: selectedWords.length })}</span>
         </button>
       </div>
 
@@ -271,13 +275,13 @@ export const WenmaiGame: React.FC<WenmaiGameProps> = ({
             className="px-4 py-2 bg-[#2E4B6E] text-white rounded-lg text-xs font-serif font-bold tracking-wider flex items-center gap-1.5 shadow"
           >
             <Sparkles size={14} />
-            <span>研读文心雕龙全卷解悟</span>
+            <span>{t('wenmai.view_all_exegesis')}</span>
           </button>
           <button
             onClick={handleOpenShare}
             className="px-4 py-2 bg-[#B93A32] text-white rounded-lg text-xs font-serif font-bold tracking-wider flex items-center gap-1.5 shadow"
           >
-            <span>生成通关文卷</span>
+            <span>{t('wenmai.share_card_btn')}</span>
           </button>
         </div>
       )}

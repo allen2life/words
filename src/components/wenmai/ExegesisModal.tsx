@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, BookMarked, Share2, Sparkles } from 'lucide-react';
 import type { WenmaiGroup } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface ExegesisModalProps {
   isOpen: boolean;
@@ -19,6 +20,8 @@ export const ExegesisModal: React.FC<ExegesisModalProps> = ({
   isCompleted,
   onOpenShare,
 }) => {
+  const { t } = useI18n();
+
   if (!isOpen) return null;
 
   const displayGroups = selectedGroup ? [selectedGroup] : allGroups || [];
@@ -38,13 +41,15 @@ export const ExegesisModal: React.FC<ExegesisModalProps> = ({
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-1.5 text-xs text-[#2E4B6E] font-semibold tracking-widest mb-1">
             <BookMarked size={15} />
-            <span>文心雕龙 · 文化解悟</span>
+            <span>{t('wenmai.exegesis_eyebrow')}</span>
           </div>
           <h3 className="text-2xl font-bold font-serif tracking-widest text-[#1C1A17]">
-            {isCompleted ? '四脉归宗 · 融会贯通' : '探赜索隐 · 钩深致远'}
+            {isCompleted
+              ? t('wenmai.exegesis_title_complete')
+              : t('wenmai.exegesis_title_partial')}
           </h3>
           <p className="text-xs text-[#7A7165] mt-1 tracking-wider">
-            从“解谜”到“解悟”：体味古人寄情寓理之意象神髓
+            {t('wenmai.exegesis_subtitle')}
           </p>
         </div>
 
@@ -76,7 +81,7 @@ export const ExegesisModal: React.FC<ExegesisModalProps> = ({
                 </div>
 
                 <div className="text-xs font-serif font-bold text-[#453F36] tracking-widest mb-2">
-                  词条：{g.words.join('  ·  ')}
+                  {t('wenmai.words_inline', { words: g.words.join('  ·  ') })}
                 </div>
 
                 <p className="text-xs leading-relaxed text-[#4A443B] font-serif text-justify">
@@ -95,7 +100,7 @@ export const ExegesisModal: React.FC<ExegesisModalProps> = ({
               className="flex-1 py-2.5 px-3 bg-[#B93A32] hover:bg-[#9E2E27] text-white rounded font-serif font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition shadow"
             >
               <Share2 size={15} />
-              <span>生成通关文卷</span>
+              <span>{t('wenmai.share_card_btn')}</span>
             </button>
           )}
 
@@ -104,7 +109,7 @@ export const ExegesisModal: React.FC<ExegesisModalProps> = ({
             className="flex-1 py-2.5 px-3 bg-[#2E4B6E] hover:bg-[#233A56] text-white rounded font-serif font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition shadow"
           >
             <Sparkles size={15} />
-            <span>合卷继续</span>
+            <span>{t('wenmai.close_scroll')}</span>
           </button>
         </div>
       </div>

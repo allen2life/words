@@ -1,5 +1,6 @@
 import React from 'react';
 import type { WenmaiGroup } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface SolvedBannersProps {
   groups: WenmaiGroup[];
@@ -7,6 +8,7 @@ interface SolvedBannersProps {
 }
 
 export const SolvedBanners: React.FC<SolvedBannersProps> = ({ groups, onOpenExegesis }) => {
+  const { t } = useI18n();
   if (groups.length === 0) return null;
 
   return (
@@ -50,7 +52,7 @@ export const SolvedBanners: React.FC<SolvedBannersProps> = ({ groups, onOpenExeg
             </div>
 
             <div className="text-[10px] font-sans underline opacity-80 shrink-0 self-end md:self-center">
-              点击研读解悟 ❯
+              {t('wenmai.tap_exegesis')}
             </div>
           </div>
         );

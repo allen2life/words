@@ -4,6 +4,7 @@ import type { PlayerStats } from '../../types/game';
 import { ACHIEVEMENTS } from '../../data/achievements';
 import { SHIZANG_PUZZLES } from '../../data/shizangPuzzles';
 import { WENMAI_PUZZLES } from '../../data/wenmaiPuzzles';
+import { useI18n } from '../../i18n';
 
 interface TujianModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface TujianModalProps {
 }
 
 export const TujianModal: React.FC<TujianModalProps> = ({ isOpen, onClose, stats }) => {
+  const { t } = useI18n();
   if (!isOpen) return null;
 
   return (
@@ -29,13 +31,13 @@ export const TujianModal: React.FC<TujianModalProps> = ({ isOpen, onClose, stats
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-1.5 text-xs text-[#5C3C67] font-semibold tracking-widest mb-1">
             <Award size={15} />
-            <span>华夏文脉 · 九阶官学功名</span>
+            <span>{t('tujian.eyebrow')}</span>
           </div>
           <h3 className="text-2xl font-bold font-serif tracking-widest text-[#1C1A17]">
-            文脉图鉴与修为印谱
+            {t('tujian.title')}
           </h3>
           <p className="text-xs text-[#7A7165] mt-1 tracking-wider">
-            日就月将，学有缉熙于光明 · 已解锁功名 {stats.collectedAchievements.length}/9
+            {t('tujian.subtitle', { count: stats.collectedAchievements.length })}
           </p>
         </div>
 
@@ -47,7 +49,7 @@ export const TujianModal: React.FC<TujianModalProps> = ({ isOpen, onClose, stats
             </div>
             <div className="text-[11px] text-[#786E61] mt-0.5 flex items-center justify-center gap-1">
               <BookOpen size={12} />
-              <span>诗眼洞穿</span>
+              <span>{t('tujian.stat_shizang')}</span>
             </div>
           </div>
 
@@ -57,16 +59,18 @@ export const TujianModal: React.FC<TujianModalProps> = ({ isOpen, onClose, stats
             </div>
             <div className="text-[11px] text-[#556E5A] mt-0.5 flex items-center justify-center gap-1">
               <Layers size={12} />
-              <span>文脉归宗</span>
+              <span>{t('tujian.stat_wenmai')}</span>
             </div>
           </div>
 
           <div className="p-3 bg-[#F3EDF5] rounded-lg border border-[#D5C2D9]">
             <div className="text-xl font-bold font-serif text-[#5C3C67]">
-              {Math.max(stats.shizangStreak, stats.wenmaiStreak)} 宿
+              {t('tujian.stat_streak_unit', {
+                count: Math.max(stats.shizangStreak, stats.wenmaiStreak),
+              })}
             </div>
             <div className="text-[11px] text-[#695270] mt-0.5">
-              <span>日课连击</span>
+              <span>{t('tujian.stat_streak')}</span>
             </div>
           </div>
         </div>
@@ -74,7 +78,7 @@ export const TujianModal: React.FC<TujianModalProps> = ({ isOpen, onClose, stats
         {/* 九阶功名进阶图谱 */}
         <div className="space-y-2.5 mb-6">
           <h4 className="text-xs font-bold tracking-wider text-[#635A4F] mb-1">
-            九阶功名录：
+            {t('tujian.rank_roster')}
           </h4>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
@@ -120,7 +124,7 @@ export const TujianModal: React.FC<TujianModalProps> = ({ isOpen, onClose, stats
             onClick={onClose}
             className="px-5 py-2 bg-[#5C3C67] hover:bg-[#4A2E55] text-white rounded font-serif text-xs font-bold tracking-wider transition shadow"
           >
-            知悉回返
+            {t('tujian.close')}
           </button>
         </div>
       </div>

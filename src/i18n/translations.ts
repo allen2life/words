@@ -11,6 +11,7 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'app.couplet_btn': 'Couplet Easter Egg',
 
     // Nav & Modes
+    'nav.brand': 'Words · Poetic Eye',
     'nav.shizang': 'Poetic Eye',
     'nav.wenmai': 'Literary Pulse',
     'nav.tujian': 'Chronicle',
@@ -25,6 +26,8 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'nav.sync_title': 'Cloud Sync & Passphrase',
     'nav.rank_title': 'Daily Global Leaderboard',
     'nav.lang_switch': '中文',
+    'nav.lang_switch_title': 'Switch Language',
+    'nav.volume_badge': 'Vol. {dayNumber}',
 
     // Buttons
     'btn.close': 'Close',
@@ -151,6 +154,46 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'shizang.share_result_won': 'Settled in {count} · The vision opens',
     'shizang.share_result_lost': 'Scroll closed · The poem endures',
 
+    // Wenmai (Literary Pulse) Game
+    'wenmai.board_instruction': 'Trace the cultural thread among 16 Chinese terms — four to a lineage, four lineages in all.',
+    'wenmai.toast_max_select': 'Only 4 terms may be chosen per grouping.',
+    'wenmai.toast_need_four': 'Choose exactly 4 terms that share one lineage.',
+    'wenmai.toast_group_solved': '✨ A match! 【{theme}】 — one lineage joined.',
+    'wenmai.toast_one_away': '💡 One away! 3 of your picks share a lineage — look again.',
+    'wenmai.toast_no_match': 'No common thread — the incense fades.',
+    'wenmai.shuffle': 'Shuffle',
+    'wenmai.reset_selection': 'Clear Picks',
+    'wenmai.submit': 'Settle the Lineage ({count}/4)',
+    'wenmai.view_all_exegesis': 'Read the Full Exegesis',
+    'wenmai.share_card_btn': 'Create Completion Scroll',
+    'wenmai.tap_exegesis': 'Tap to read the exegesis ❯',
+    'wenmai.mistakes_label': 'Incense Allowance:',
+    'wenmai.dot_active_title': 'A chance still in hand',
+    'wenmai.dot_spent_title': 'A chance already spent',
+    'wenmai.exegesis_eyebrow': 'The Literary Mind · Cultural Exegesis',
+    'wenmai.exegesis_title_complete': 'Four Lineages United · All Threads Converge',
+    'wenmai.exegesis_title_partial': 'Seeking the Hidden · Reaching the Far',
+    'wenmai.exegesis_subtitle': 'From riddle to epiphany — savour the imagery through which the ancients gave form to feeling.',
+    'wenmai.words_inline': 'Terms: {words}',
+    'wenmai.close_scroll': 'Close the Scroll',
+    'wenmai.share_game_title': 'Literary Pulse · No. {day}',
+    'wenmai.share_highlight': '【{title}】 · 16 terms sorted into four lineages',
+    'wenmai.share_author': 'Chinese Allusions · Hundred Schools of Thought · Immortal Classics',
+    'wenmai.share_summary_perfect': 'Four lineages joined · Flawless, not a stick spent',
+    'wenmai.share_summary_spent': 'Four lineages joined · {count} sticks of incense spent',
+    'wenmai.share_summary_closed': 'Four lineages closed · The scroll settles into insight',
+
+    // Tujian (Codex) Gallery Modal
+    'tujian.eyebrow': 'Literary Lineage · Nine Ranks of the Imperial Academy',
+    'tujian.title': 'The Codex · Seals of Attainment',
+    'tujian.subtitle': 'Day by day, month by month, learning advances toward the light · Titles unlocked {count}/9',
+    'tujian.stat_shizang': 'Poetic Eyes Pierced',
+    'tujian.stat_wenmai': 'Lineages United',
+    'tujian.stat_streak_unit': '{count} Days',
+    'tujian.stat_streak': 'Study Streak',
+    'tujian.rank_roster': 'The Nine Ranks of Honors:',
+    'tujian.close': 'Understood · Return',
+
     // Server Error Codes (SPEC_I18N Section 3)
     'err.kouling_format': 'Invalid passphrase format (requires 3 parts, 1-8 chars each).',
     'err.hash_mismatch': 'User identity does not match passphrase.',
@@ -176,6 +219,7 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'app.couplet_btn': '骈文对仗彩蛋',
 
     // Nav & Modes
+    'nav.brand': '诗藏 · 文脉',
     'nav.shizang': '诗藏',
     'nav.wenmai': '文脉',
     'nav.tujian': '图鉴',
@@ -190,6 +234,8 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'nav.sync_title': '三维口令与云端同步',
     'nav.rank_title': '每日全网风云排行榜',
     'nav.lang_switch': 'EN',
+    'nav.lang_switch_title': '切换语言',
+    'nav.volume_badge': 'Vol. {dayNumber}',
 
     // Buttons
     'btn.close': '关闭',
@@ -315,6 +361,46 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'shizang.share_game_title': '《诗藏》第 {day} 期',
     'shizang.share_result_won': '{count}次定局 · 意境顿开',
     'shizang.share_result_lost': '掩卷沉思 · 诗意长存',
+
+    // Wenmai (Literary Pulse) Game
+    'wenmai.board_instruction': '找寻 16 个华夏词条间的文化渊源，4 个一组，归并四脉',
+    'wenmai.toast_max_select': '每次归类仅可选取 4 个词条',
+    'wenmai.toast_need_four': '请恰好选取 4 个同属一脉的词条',
+    'wenmai.toast_group_solved': '✨ 契合！【{theme}】文脉贯通！',
+    'wenmai.toast_one_away': '💡 差之毫厘！所选词中有 3 个属于同一文脉，请再辨析！',
+    'wenmai.toast_no_match': '四词脉络不合，沉香渐消',
+    'wenmai.shuffle': '洗牌理叙',
+    'wenmai.reset_selection': '重置所选',
+    'wenmai.submit': '定夺脉络 ({count}/4)',
+    'wenmai.view_all_exegesis': '研读文心雕龙全卷解悟',
+    'wenmai.share_card_btn': '生成通关文卷',
+    'wenmai.tap_exegesis': '点击研读解悟 ❯',
+    'wenmai.mistakes_label': '沉香余韵：',
+    'wenmai.dot_active_title': '尚有容错机会',
+    'wenmai.dot_spent_title': '已耗费一次推敲机会',
+    'wenmai.exegesis_eyebrow': '文心雕龙 · 文化解悟',
+    'wenmai.exegesis_title_complete': '四脉归宗 · 融会贯通',
+    'wenmai.exegesis_title_partial': '探赜索隐 · 钩深致远',
+    'wenmai.exegesis_subtitle': '从“解谜”到“解悟”：体味古人寄情寓理之意象神髓',
+    'wenmai.words_inline': '词条：{words}',
+    'wenmai.close_scroll': '合卷继续',
+    'wenmai.share_game_title': '《文脉》第 {day} 期',
+    'wenmai.share_highlight': '【{title}】16词分类归宗',
+    'wenmai.share_author': '华夏典故 · 诸子思想 · 传世名篇',
+    'wenmai.share_summary_perfect': '四脉通达 · 零失误大圆满',
+    'wenmai.share_summary_spent': '四脉通达 · 耗香{count}柱',
+    'wenmai.share_summary_closed': '四脉既毕 · 掩卷通悟',
+
+    // Tujian (Codex) Gallery Modal
+    'tujian.eyebrow': '华夏文脉 · 九阶官学功名',
+    'tujian.title': '文脉图鉴与修为印谱',
+    'tujian.subtitle': '日就月将，学有缉熙于光明 · 已解锁功名 {count}/9',
+    'tujian.stat_shizang': '诗眼洞穿',
+    'tujian.stat_wenmai': '文脉归宗',
+    'tujian.stat_streak_unit': '{count} 宿',
+    'tujian.stat_streak': '日课连击',
+    'tujian.rank_roster': '九阶功名录：',
+    'tujian.close': '知悉回返',
 
     // Server Error Codes (SPEC_I18N Section 3)
     'err.kouling_format': '口令格式有误（需为3段，每段1-8字符）。',
