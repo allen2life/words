@@ -123,7 +123,14 @@ export const ShizangGame: React.FC<ShizangGameProps> = ({
       gameTitle: t('shizang.share_game_title', { day: dayNumber }),
       dateStr,
       formattedDate,
-      highlightPoem: puzzle.targetLine.replace(puzzle.targetChar, isSolved ? puzzle.targetChar : '○'),
+      // 必须在 targetIndex 处挖空：targetChar 可能在句中重复出现（如“杨柳依依”的“依”），
+      // 用 String.replace 会替换首个匹配位，导致分享卡遮错位置。
+      highlightPoem: isSolved
+        ? puzzle.targetLine
+        : puzzle.targetLine
+            .split('')
+            .map((c, i) => (i === puzzle.targetIndex ? '○' : c))
+            .join(''),
       author: `${puzzle.dynasty} · ${puzzle.author}`,
       resultSummary: isSolved
         ? t('shizang.share_result_won', { count: guesses.length })

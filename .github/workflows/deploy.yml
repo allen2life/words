@@ -37,6 +37,9 @@ jobs:
       - name: Lint (Oxlint)
         run: npm run lint
 
+      - name: Validate Puzzle Content
+        run: node scripts/validate-content.mjs
+
       - name: Typecheck & Production Build
         run: npm run build
 
