@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ShizangPuzzle } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface VerseBoardProps {
   puzzle: ShizangPuzzle;
@@ -12,6 +13,7 @@ export const VerseBoard: React.FC<VerseBoardProps> = ({
   isSolved,
   currentAttemptChar,
 }) => {
+  const { t } = useI18n();
   const chars = puzzle.targetLine.split('');
 
   return (
@@ -48,11 +50,11 @@ export const VerseBoard: React.FC<VerseBoardProps> = ({
                 ) : currentAttemptChar ? (
                   <span className="ink-reveal">{currentAttemptChar}</span>
                 ) : (
-                  <span className="text-base text-[#9C8F7C] tracking-widest">诗眼</span>
+                  <span className="text-base text-[#9C8F7C] tracking-widest">{t('shizang.eye_label')}</span>
                 )}
                 {/* 诗眼标记角标 */}
                 <div className="absolute -top-2.5 -right-2 bg-[#B93A32] text-white text-[9px] px-1 py-0.2 rounded-full font-sans tracking-tighter">
-                  诗眼
+                  {t('shizang.eye_label')}
                 </div>
               </div>
             );
@@ -70,7 +72,7 @@ export const VerseBoard: React.FC<VerseBoardProps> = ({
       </div>
 
       <p className="text-xs text-[#8A8072] mt-2.5 tracking-wider font-serif">
-        {isSolved ? '🌸 诗眼已破，意境顿开！' : '请根据声律意境，补全千古名句之“诗眼”'}
+        {isSolved ? t('shizang.board_solved') : t('shizang.board_instruction')}
       </p>
     </div>
   );

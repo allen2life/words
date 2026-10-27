@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Sparkles, Share2, Compass, CheckCircle } from 'lucide-react';
 import type { ShizangPuzzle } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface VerseSuccessModalProps {
   isOpen: boolean;
@@ -21,6 +22,8 @@ export const VerseSuccessModal: React.FC<VerseSuccessModalProps> = ({
   onOpenShare,
   onTriggerCouplet,
 }) => {
+  const { t } = useI18n();
+
   if (!isOpen) return null;
 
   return (
@@ -40,12 +43,12 @@ export const VerseSuccessModal: React.FC<VerseSuccessModalProps> = ({
             {isWon ? <CheckCircle size={32} /> : <Compass size={32} />}
           </div>
           <h3 className="text-2xl font-bold font-serif tracking-widest text-[#1C1A17]">
-            {isWon ? '诗眼既破 · 文心通达' : '卷掩沉思 · 诗意长存'}
+            {isWon ? t('shizang.modal_won_title') : t('shizang.modal_lost_title')}
           </h3>
           <p className="text-xs text-[#7A7165] mt-1 tracking-wider">
             {isWon
-              ? `在第 ${guessesCount} 次推敲中洞开诗意，妙笔生花！`
-              : `本局诗眼为“${puzzle.targetChar}”，且看前贤如何运笔造境。`}
+              ? t('shizang.modal_won_desc', { count: guessesCount })
+              : t('shizang.modal_lost_desc', { char: puzzle.targetChar })}
           </p>
         </div>
 
@@ -79,14 +82,14 @@ export const VerseSuccessModal: React.FC<VerseSuccessModalProps> = ({
           <div className="bg-[#FAF3E4] p-3.5 rounded border border-[#E0D0B5]">
             <h4 className="font-bold text-sm tracking-wider text-[#8C6036] mb-1.5 flex items-center gap-1.5">
               <Sparkles size={15} />
-              诗眼造境解析
+              {t('shizang.appreciation_title')}
             </h4>
             <p className="text-[#52483C]">{puzzle.appreciation}</p>
           </div>
 
           <div className="p-3 bg-[#F2EDE1]/60 rounded border border-[#DDD4C3]">
             <h4 className="font-bold text-xs tracking-wider text-[#635A4F] mb-1">
-              诗人小传
+              {t('shizang.author_bio_title')}
             </h4>
             <p className="text-[#696156]">{puzzle.authorBio}</p>
           </div>
@@ -99,7 +102,7 @@ export const VerseSuccessModal: React.FC<VerseSuccessModalProps> = ({
             className="flex-1 py-2.5 px-3 bg-[#2E4B6E] hover:bg-[#233A56] text-white rounded font-serif font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition shadow"
           >
             <Sparkles size={15} />
-            <span>解密骈文对仗彩蛋</span>
+            <span>{t('shizang.couplet_btn')}</span>
           </button>
 
           <button
@@ -107,7 +110,7 @@ export const VerseSuccessModal: React.FC<VerseSuccessModalProps> = ({
             className="flex-1 py-2.5 px-3 bg-[#B93A32] hover:bg-[#9E2E27] text-white rounded font-serif font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition shadow"
           >
             <Share2 size={15} />
-            <span>生成水墨打卡图</span>
+            <span>{t('shizang.share_card_btn')}</span>
           </button>
         </div>
       </div>

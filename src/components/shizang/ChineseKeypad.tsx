@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { CornerDownLeft, Delete } from 'lucide-react';
 import type { ShizangPuzzle } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface ChineseKeypadProps {
   puzzle: ShizangPuzzle;
@@ -17,6 +18,7 @@ export const ChineseKeypad: React.FC<ChineseKeypadProps> = ({
   onSubmit,
   disabled,
 }) => {
+  const { t } = useI18n();
   const [typedInput, setTypedInput] = useState('');
 
   // 灵感字盘：生成包含目标字、同部首字、同韵字以及经典诗词常用字的候选池（16-20个字）
@@ -83,7 +85,7 @@ export const ChineseKeypad: React.FC<ChineseKeypadProps> = ({
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             disabled={disabled}
-            placeholder="输入或点击下方候选字推敲..."
+            placeholder={t('shizang.input_placeholder')}
             maxLength={1}
             className="w-full px-3.5 py-2 text-center text-lg font-serif font-bold bg-[#FFFFFF] border-2 border-[#CFC3A5] focus:border-[#B93A32] rounded-lg outline-none text-[#1C1A17] placeholder:text-xs placeholder:font-sans placeholder:text-[#9C9387] shadow-inner transition"
           />
@@ -94,7 +96,7 @@ export const ChineseKeypad: React.FC<ChineseKeypadProps> = ({
                 setTypedInput('');
               }}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8C8377] hover:text-[#B93A32]"
-              title="清除"
+              title={t('shizang.clear')}
             >
               <Delete size={18} />
             </button>
@@ -107,7 +109,7 @@ export const ChineseKeypad: React.FC<ChineseKeypadProps> = ({
           disabled={disabled || !currentChar}
           className="px-5 py-2.5 bg-[#B93A32] hover:bg-[#A02D26] disabled:opacity-40 disabled:hover:bg-[#B93A32] text-white font-serif font-bold text-sm tracking-widest rounded-lg flex items-center gap-1.5 transition shadow-sm"
         >
-          <span>定稿推敲</span>
+          <span>{t('shizang.submit_guess')}</span>
           <CornerDownLeft size={16} />
         </button>
       </div>
@@ -115,8 +117,8 @@ export const ChineseKeypad: React.FC<ChineseKeypadProps> = ({
       {/* 灵感字盘（智能候选字阵） */}
       <div>
         <div className="text-[11px] font-semibold text-[#82786B] mb-2 flex items-center justify-between">
-          <span>灵感候选字盘</span>
-          <span className="text-[10px] text-[#A19788]">点击即选，亦可自由键盘敲入</span>
+          <span>{t('shizang.keypad_title')}</span>
+          <span className="text-[10px] text-[#A19788]">{t('shizang.keypad_hint')}</span>
         </div>
 
         <div className="grid grid-cols-8 gap-1.5 md:gap-2">

@@ -9,6 +9,7 @@ import { VerseSuccessModal } from './VerseSuccessModal';
 import { recordShizangResult } from '../../utils/storage';
 import type { ShareCardData } from '../../utils/shareCard';
 import { ACHIEVEMENTS } from '../../data/achievements';
+import { useI18n } from '../../i18n';
 
 interface ShizangGameProps {
   puzzle: ShizangPuzzle;
@@ -33,11 +34,12 @@ export const ShizangGame: React.FC<ShizangGameProps> = ({
   onOpenShareModal,
   onTriggerCouplet,
 }) => {
+  const { t } = useI18n();
   const isAlreadySolved = stats.solvedShizangIds.includes(puzzle.id);
   const [currentChar, setCurrentChar] = useState('');
   const [guesses, setGuesses] = useState<GuessRecord[]>(() =>
     isAlreadySolved
-      ? [{ char: puzzle.targetChar, status: 'exact', feedback: '原题已在往期修习中洞穿！' }]
+      ? [{ char: puzzle.targetChar, status: 'exact', feedback: t('shizang.feedback_already_solved') }]
       : []
   );
   const [isSolved, setIsSolved] = useState(isAlreadySolved);
@@ -52,22 +54,22 @@ export const ShizangGame: React.FC<ShizangGameProps> = ({
 
     // 判定逻辑
     let status: 'exact' | 'near' | 'none' = 'none';
-    let feedback = '此字不在诗中，风马牛不及';
+    let feedback = t('shizang.feedback_absent');
 
     if (isExact) {
       status = 'exact';
-      feedback = '正中诗眼！字正腔圆，神韵尽显！';
+      feedback = t('shizang.feedback_exact');
     } else {
       const fullPoemText = puzzle.fullPoem.join('');
       if (fullPoemText.includes(currentChar)) {
         status = 'near';
-        feedback = '此字在全诗其他句中出现，意境相近但非此处诗眼';
+        feedback = t('shizang.feedback_near_poem');
       } else {
         // 同偏旁部首检测
         const radicalChar = puzzle.clues.radical[0];
         if (currentChar.includes(radicalChar)) {
           status = 'near';
-          feedback = '部首声律暗合，但非原字';
+          feedback = t('shizang.feedback_near_radical');
         }
       }
     }
@@ -118,12 +120,14 @@ export const ShizangGame: React.FC<ShizangGameProps> = ({
     });
 
     const shareData: ShareCardData = {
-      gameTitle: `《诗藏》第 ${dayNumber} 期`,
+      gameTitle: t('shizang.share_game_title', { day: dayNumber }),
       dateStr,
       formattedDate,
       highlightPoem: puzzle.targetLine.replace(puzzle.targetChar, isSolved ? puzzle.targetChar : '○'),
       author: `${puzzle.dynasty} · ${puzzle.author}`,
-      resultSummary: isSolved ? `${guesses.length}次定局 · 意境顿开` : '掩卷沉思 · 诗意长存',
+      resultSummary: isSolved
+        ? t('shizang.share_result_won', { count: guesses.length })
+        : t('shizang.share_result_lost'),
       blocks,
       streak: stats.shizangStreak,
       rankTitle: currentAchRank

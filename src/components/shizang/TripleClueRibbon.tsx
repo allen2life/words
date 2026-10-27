@@ -1,6 +1,7 @@
 import React from 'react';
 import { Volume2, Sparkles, Feather, Lock } from 'lucide-react';
 import type { ShizangPuzzle } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface TripleClueRibbonProps {
   puzzle: ShizangPuzzle;
@@ -8,15 +9,17 @@ interface TripleClueRibbonProps {
 }
 
 export const TripleClueRibbon: React.FC<TripleClueRibbonProps> = ({ puzzle, attemptsCount }) => {
+  const { t } = useI18n();
+
   return (
     <div className="w-full max-w-xl my-4 p-3.5 bg-[#FAF6EE] rounded-lg border border-[#DDD3C2] shadow-xs">
       <div className="flex items-center justify-between mb-2">
         <span className="text-xs font-bold text-[#635A4F] tracking-wider flex items-center gap-1.5">
           <Feather size={14} className="text-[#B93A32]" />
-          墨韵三重提示
+          {t('shizang.clue_ribbon_title')}
         </span>
         <span className="text-[11px] text-[#8C8377]">
-          尝试推敲解锁更多线索 ({Math.min(attemptsCount, 3)}/3)
+          {t('shizang.clue_unlock_progress', { count: Math.min(attemptsCount, 3) })}
         </span>
       </div>
 
@@ -31,13 +34,13 @@ export const TripleClueRibbon: React.FC<TripleClueRibbonProps> = ({ puzzle, atte
         >
           <div className="flex items-center gap-1 font-semibold mb-1 text-[#8C6036]">
             <Volume2 size={13} />
-            <span>一重 · 音韵</span>
+            <span>{t('shizang.clue_tone_title')}</span>
           </div>
           {attemptsCount >= 1 ? (
             <p className="font-serif leading-relaxed text-[11px]">{puzzle.clues.tone}</p>
           ) : (
             <p className="flex items-center gap-1 text-[11px]">
-              <Lock size={11} /> 首次推敲后揭示
+              <Lock size={11} /> {t('shizang.clue_locked_1')}
             </p>
           )}
         </div>
@@ -52,13 +55,13 @@ export const TripleClueRibbon: React.FC<TripleClueRibbonProps> = ({ puzzle, atte
         >
           <div className="flex items-center gap-1 font-semibold mb-1 text-[#4F7359]">
             <Sparkles size={13} />
-            <span>二重 · 部首</span>
+            <span>{t('shizang.clue_radical_title')}</span>
           </div>
           {attemptsCount >= 2 ? (
             <p className="font-serif leading-relaxed text-[11px]">{puzzle.clues.radical}</p>
           ) : (
             <p className="flex items-center gap-1 text-[11px]">
-              <Lock size={11} /> 两次推敲后揭示
+              <Lock size={11} /> {t('shizang.clue_locked_2')}
             </p>
           )}
         </div>
@@ -73,13 +76,13 @@ export const TripleClueRibbon: React.FC<TripleClueRibbonProps> = ({ puzzle, atte
         >
           <div className="flex items-center gap-1 font-semibold mb-1 text-[#2E4B6E]">
             <Feather size={13} />
-            <span>三重 · 意象</span>
+            <span>{t('shizang.clue_imagery_title')}</span>
           </div>
           {attemptsCount >= 3 ? (
             <p className="font-serif leading-relaxed text-[11px]">{puzzle.clues.imagery}</p>
           ) : (
             <p className="flex items-center gap-1 text-[11px]">
-              <Lock size={11} /> 三次推敲后揭示
+              <Lock size={11} /> {t('shizang.clue_locked_3')}
             </p>
           )}
         </div>

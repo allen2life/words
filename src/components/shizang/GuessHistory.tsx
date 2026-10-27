@@ -1,5 +1,6 @@
 import React from 'react';
 import type { GuessRecord } from '../../types/game';
+import { useI18n } from '../../i18n';
 
 interface GuessHistoryProps {
   guesses: GuessRecord[];
@@ -7,13 +8,14 @@ interface GuessHistoryProps {
 }
 
 export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, maxGuesses }) => {
+  const { t } = useI18n();
   const emptyRows = Array(Math.max(0, maxGuesses - guesses.length)).fill(null);
 
   return (
     <div className="w-full max-w-xl my-3">
       <div className="text-xs font-semibold text-[#736B61] mb-2 flex items-center justify-between">
-        <span>推敲历程 ({guesses.length}/{maxGuesses})</span>
-        <span className="text-[10px] text-[#9C9387]">🟥 朱砂红命中 · 🟨 松花黄字近 · ⬛ 墨灰未中</span>
+        <span>{t('shizang.history_title', { count: guesses.length, max: maxGuesses })}</span>
+        <span className="text-[10px] text-[#9C9387]">{t('shizang.history_legend')}</span>
       </div>
 
       <div className="space-y-2">
@@ -45,16 +47,16 @@ export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, maxGuesses 
                 </div>
                 <div className="text-xs">
                   <span className={`font-bold mr-2 ${textColor}`}>
-                    第 {idx + 1} 次推敲：
+                    {t('shizang.attempt_label', { count: idx + 1 })}
                   </span>
                   <span className="text-[#59524A]">{g.feedback}</span>
                 </div>
               </div>
 
               <div className="text-xs font-serif font-semibold text-[#8C8377]">
-                {g.status === 'exact' && '【字正腔圆】'}
-                {g.status === 'near' && '【意对字错】'}
-                {g.status === 'none' && '【风马牛不及】'}
+                {g.status === 'exact' && t('shizang.badge_exact')}
+                {g.status === 'near' && t('shizang.badge_near')}
+                {g.status === 'none' && t('shizang.badge_none')}
               </div>
             </div>
           );
@@ -70,7 +72,7 @@ export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, maxGuesses 
               <div className="w-9 h-9 rounded-md border border-dashed border-[#C7BBA5] flex items-center justify-center font-serif text-[#B5AA96]">
                 {guesses.length + idx + 1}
               </div>
-              <span>虚位以待 · 待子推敲</span>
+              <span>{t('shizang.empty_slot')}</span>
             </div>
           </div>
         ))}
