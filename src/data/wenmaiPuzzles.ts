@@ -11,6 +11,7 @@ import { WENMAI_009 } from './wenmai/shard-009.ts';
 import { WENMAI_010 } from './wenmai/shard-010.ts';
 import { WENMAI_011 } from './wenmai/shard-011.ts';
 import { WENMAI_012 } from './wenmai/shard-012.ts';
+import { WENMAI_013 } from './wenmai/shard-013.ts';
 import { WENMAI_014 } from './wenmai/shard-014.ts';
 import { WENMAI_017 } from './wenmai/shard-017.ts';
 import { WENMAI_018 } from './wenmai/shard-018.ts';
@@ -32,6 +33,7 @@ export const WENMAI_PUZZLES: WenmaiPuzzle[] = [
   ...WENMAI_010,
   ...WENMAI_011,
   ...WENMAI_012,
+  ...WENMAI_013,
   ...WENMAI_014,
   ...WENMAI_017,
   ...WENMAI_018,
