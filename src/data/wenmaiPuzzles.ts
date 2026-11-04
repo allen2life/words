@@ -7,18 +7,14 @@ import { WENMAI_005 } from './wenmai/shard-005.ts';
 import { WENMAI_006 } from './wenmai/shard-006.ts';
 import { WENMAI_007 } from './wenmai/shard-007.ts';
 import { WENMAI_008 } from './wenmai/shard-008.ts';
+import { WENMAI_009 } from './wenmai/shard-009.ts';
+import { WENMAI_010 } from './wenmai/shard-010.ts';
 import { WENMAI_011 } from './wenmai/shard-011.ts';
+import { WENMAI_014 } from './wenmai/shard-014.ts';
 
 /**
- * 《文脉》题库总索引。
- *
- * 数据按片（shard）拆分，每片约 12–22 期，便于人工审校与按批次补题。
- * 新增内容时：新建 `wenmai/shard-XXX.ts` 导出 `WENMAI_XXX`，在此处 import 并加入数组。
- *
- * 约束：同一期内 16 词必须互不重复，跨期亦应趋近零重复
- * （用 `node scripts/wenmai-conflicts.mjs` 校验）。
- *
- * 题库容量目标：365 天不重复。
+ * 《文脉》题库总索引。数据按片拆分（每片 12–22 期），便于审校与分批补题。
+ * 约束：同期 16 词互不重复；跨期趋近零重复（`node scripts/wenmai-conflicts.mjs`）。
  */
 export const WENMAI_PUZZLES: WenmaiPuzzle[] = [
   ...WENMAI_001,
@@ -29,5 +25,8 @@ export const WENMAI_PUZZLES: WenmaiPuzzle[] = [
   ...WENMAI_006,
   ...WENMAI_007,
   ...WENMAI_008,
+  ...WENMAI_009,
+  ...WENMAI_010,
   ...WENMAI_011,
+  ...WENMAI_014,
 ];

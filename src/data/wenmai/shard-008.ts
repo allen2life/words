@@ -369,7 +369,7 @@ export const WENMAI_008: WenmaiPuzzle[] = [
         dimension: '同户税名',
         tier: 'green',
         tierName: '诗文通识',
-        words: ['户税', '口赋', '算赋', '更赋'],
+        words: ['户税', '科差', '口钱', '更赋'],
         exegesis: '户税按户等征收，口赋按人口征钱，算赋为汉代入头税，更赋为代役之钱。四者皆古代以户与口为课税对象之税目。'
       },
       {
