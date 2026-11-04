@@ -12,6 +12,8 @@ import { SHIZANG_010 } from './shizang/shard-010.ts';
 import { SHIZANG_011 } from './shizang/shard-011.ts';
 import { SHIZANG_012 } from './shizang/shard-012.ts';
 import { SHIZANG_013 } from './shizang/shard-013.ts';
+import { SHIZANG_014 } from './shizang/shard-014.ts';
+import { SHIZANG_015 } from './shizang/shard-015.ts';
 
 /**
  * 《诗藏》题库总索引。
@@ -36,4 +38,6 @@ export const SHIZANG_PUZZLES: ShizangPuzzle[] = [
   ...SHIZANG_011,
   ...SHIZANG_012,
   ...SHIZANG_013,
+  ...SHIZANG_014,
+  ...SHIZANG_015,
 ];
