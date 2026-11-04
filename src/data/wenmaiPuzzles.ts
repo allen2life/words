@@ -1,6 +1,8 @@
 import type { WenmaiPuzzle } from '../types/game';
 import { WENMAI_001 } from './wenmai/shard-001.ts';
 import { WENMAI_002 } from './wenmai/shard-002.ts';
+import { WENMAI_005 } from './wenmai/shard-005.ts';
+import { WENMAI_003 } from './wenmai/shard-003.ts';
 
 /**
  * 《文脉》题库总索引。
@@ -14,4 +16,6 @@ import { WENMAI_002 } from './wenmai/shard-002.ts';
 export const WENMAI_PUZZLES: WenmaiPuzzle[] = [
   ...WENMAI_001,
   ...WENMAI_002,
+  ...WENMAI_003,
+  ...WENMAI_005,
 ];
