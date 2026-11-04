@@ -31,7 +31,10 @@ for (const s of shards) {
   }
 }
 
-const conflicts = [...index.entries()].filter(([, v]) => v.length > 1);
+// 同一期内不同组出现同一词才是冲突；同一词出现在不同期属于跨期重复。
+const conflicts = [...index.entries()]
+  .map(([w, list]) => [w, [...new Map(list.map((x) => [x.issue + '/' + x.group, x])).values()]])
+  .filter(([, list]) => list.length > 1);
 
 // 同期内重复（真正会让谜题无解的错误）
 const intraIssue = [];
