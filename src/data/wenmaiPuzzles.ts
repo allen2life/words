@@ -2,6 +2,7 @@ import type { WenmaiPuzzle } from '../types/game';
 import { WENMAI_001 } from './wenmai/shard-001.ts';
 import { WENMAI_002 } from './wenmai/shard-002.ts';
 import { WENMAI_005 } from './wenmai/shard-005.ts';
+import { WENMAI_008 } from './wenmai/shard-008.ts';
 import { WENMAI_003 } from './wenmai/shard-003.ts';
 
 /**
@@ -18,4 +19,5 @@ export const WENMAI_PUZZLES: WenmaiPuzzle[] = [
   ...WENMAI_002,
   ...WENMAI_003,
   ...WENMAI_005,
+  ...WENMAI_008,
 ];
