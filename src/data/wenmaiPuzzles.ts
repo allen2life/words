@@ -13,6 +13,7 @@ import { WENMAI_011 } from './wenmai/shard-011.ts';
 import { WENMAI_012 } from './wenmai/shard-012.ts';
 import { WENMAI_014 } from './wenmai/shard-014.ts';
 import { WENMAI_017 } from './wenmai/shard-017.ts';
+import { WENMAI_018 } from './wenmai/shard-018.ts';
 
 /**
  * 《文脉》题库总索引。数据按片拆分（每片 12–22 期），便于审校与分批补题。
@@ -33,4 +34,5 @@ export const WENMAI_PUZZLES: WenmaiPuzzle[] = [
   ...WENMAI_012,
   ...WENMAI_014,
   ...WENMAI_017,
+  ...WENMAI_018,
 ];

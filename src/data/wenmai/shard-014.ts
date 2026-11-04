@@ -273,7 +273,7 @@ export const WENMAI_014: WenmaiPuzzle[] = [
         dimension: '同驿物名',
         tier: 'yellow',
         tierName: '蒙学入门',
-        words: ['驿骑', '驿舍', '驿符', '驿券'],
+        words: ['传置', '驿舍', '递亭', '驿券'],
         exegesis: '驿马供传递与乘骑，驿舍为使者止宿之所，驿符为验身之信物，驿券为支给廪粮之凭。四者皆驿传制度之实物。'
       },
       {
