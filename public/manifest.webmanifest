@@ -1,7 +1,9 @@
 {
-  "name": "诗藏与文脉 · 国风日课解谜矩阵",
+  "name": "诗藏与文脉 · 东方文脉轻解谜",
   "short_name": "诗藏文脉",
-  "description": "国风版NYT Games文创矩阵：《诗藏》猜千古名句诗眼，《文脉》理华夏典故文脉。每日一题，东方轻解谜。",
+  "description": "古典诗词轻解谜：《诗藏》猜千古名句诗眼，《文脉》理华夏典故文脉。东方文脉，静心一题。",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "/",
   "id": "xyz.loongclan.words",
   "display": "standalone",

@@ -30,7 +30,7 @@ export const RuleModal: React.FC<RuleModalProps> = ({ isOpen, onClose, defaultTa
         {/* 标题 */}
         <div className="text-center mb-6">
           <span className="text-xs tracking-[0.3em] text-[#8C8377] font-semibold">
-            {isEn ? 'ORIENTAL LITERARY RIDDLES' : '国风日课 · 研读法则'}
+            {isEn ? 'HOW TO PLAY' : '国风日课 · 研读法则'}
           </span>
           <h2 className="text-2xl font-bold tracking-wider mt-1 text-[#1C1A17] font-serif">
             {isEn ? 'Rules & How to Play' : '通关指引与中式解谜规则'}

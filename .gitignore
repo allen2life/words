@@ -34,3 +34,6 @@ proof-records/*.webm
 .env
 .env.local
 .tmpwork/
+
+# 运营产出（文档/证据），不入库
+deliverables/

@@ -173,7 +173,7 @@ export const I18N_STRINGS: Record<SupportedLocale, Record<string, string>> = {
     'wenmai.exegesis_eyebrow': 'The Literary Mind · Cultural Exegesis',
     'wenmai.exegesis_title_complete': 'Four Lineages United · All Threads Converge',
     'wenmai.exegesis_title_partial': 'Seeking the Hidden · Reaching the Far',
-    'wenmai.exegesis_subtitle': 'From riddle to epiphany — savour the imagery through which the ancients gave form to feeling.',
+    'wenmai.exegesis_subtitle': 'From puzzle to epiphany — savour the imagery through which the ancients gave form to feeling.',
     'wenmai.words_inline': 'Terms: {words}',
     'wenmai.close_scroll': 'Close the Scroll',
     'wenmai.share_game_title': 'Literary Pulse · No. {day}',
