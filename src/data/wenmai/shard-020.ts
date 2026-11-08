@@ -5,12 +5,12 @@ import type { WenmaiPuzzle } from '../../types/game';
  */
 export const WENMAI_020: WenmaiPuzzle[] = [
   {
-    id: 'wm-278',
+    id: 'wm-292',
     dateStr: '2027-11-24',
     title: '第 537 期 · 开辟篇',
     groups: [
       {
-        id: 'wm-278-g1',
+        id: 'wm-292-g1',
         theme: '上古开辟神话',
         dimension: '同神话名',
         tier: 'yellow',
@@ -19,7 +19,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '盘古开天谓天地混沌如鸡子而盘古斧分之，女娲补天炼五色石以补苍天之阙，女娲造人抟黄土为人，共工触山怒触不周山而天柱折。四者皆上古开辟与再造之神话。'
       },
       {
-        id: 'wm-278-g2',
+        id: 'wm-292-g2',
         theme: '上古抗争神话',
         dimension: '同神话名',
         tier: 'green',
@@ -28,7 +28,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '精卫溺于东海而衔木石以填之，夸父逐日道渴而死，刑天与帝争神而断首犹舞干戚，后羿射九日而救民。四者皆以抗争不屈为精神内核之上古神话。'
       },
       {
-        id: 'wm-278-g3',
+        id: 'wm-292-g3',
         theme: '神话之书',
         dimension: '同神话书',
         tier: 'blue',
@@ -37,7 +37,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《山海经》为古神话之总汇，《淮南子》保存女娲补天、后羿射日诸说，《楚辞·天问》以问语历举神话，《列子》载愚公移山、夸父逐日。四书皆神话之渊薮。'
       },
       {
-        id: 'wm-278-g4',
+        id: 'wm-292-g4',
         theme: '神话之原型',
         dimension: '同原型名',
         tier: 'purple',
@@ -48,12 +48,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-279',
+    id: 'wm-293',
     dateStr: '2027-11-25',
     title: '第 538 期 · 神兽篇',
     groups: [
       {
-        id: 'wm-279-g1',
+        id: 'wm-293-g1',
         theme: '四灵之名',
         dimension: '同神兽名',
         tier: 'yellow',
@@ -62,7 +62,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '青龙为东方之神，白虎为西方之神，朱雀为南方之神，玄武为北方之神。四者皆二十八宿所配之四方神兽，见《三辅黄图》与《淮南子》。'
       },
       {
-        id: 'wm-279-g2',
+        id: 'wm-293-g2',
         theme: '祥瑞之兽',
         dimension: '同瑞兽名',
         tier: 'green',
@@ -71,7 +71,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '麒麟为仁兽而见则天下太平，凤凰为百鸟之王而见则天下安宁，白泽能言而识万物之情（《白泽图》），重明鸟能搏逐猛兽。四者皆古代祥瑞之兽。'
       },
       {
-        id: 'wm-279-g3',
+        id: 'wm-293-g3',
         theme: '《山海经》异兽',
         dimension: '同异兽名',
         tier: 'blue',
@@ -80,7 +80,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '毕方为木精而见则有火，穷奇为四凶之一而助恶抑善，饕餮贪食而无厌，檮杌难训而傲狠。四者皆《山海经》《神异经》所载之异兽。'
       },
       {
-        id: 'wm-279-g4',
+        id: 'wm-293-g4',
         theme: '神兽之象',
         dimension: '同象征名',
         tier: 'purple',
@@ -91,12 +91,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-280',
+    id: 'wm-294',
     dateStr: '2027-11-26',
     title: '第 539 期 · 神仙篇',
     groups: [
       {
-        id: 'wm-280-g1',
+        id: 'wm-294-g1',
         theme: '神仙之属',
         dimension: '同神仙名',
         tier: 'yellow',
@@ -105,7 +105,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《庄子》有真人、至人、神人、圣人之目：真人不知悦生恶死，至人无己，神人不食五谷而吸风饮露，圣人和光同尘。四者皆道家理想人格之境界。'
       },
       {
-        id: 'wm-280-g2',
+        id: 'wm-294-g2',
         theme: '仙境之名',
         dimension: '同仙地名',
         tier: 'green',
@@ -114,7 +114,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '蓬莱、方丈、瀛洲为海上三神山（《史记·封禅书》），昆仑为西王母所居之仙山（《山海经》）。四者皆古代仙境传说之要。'
       },
       {
-        id: 'wm-280-g3',
+        id: 'wm-294-g3',
         theme: '仙人之术',
         dimension: '同仙术名',
         tier: 'blue',
@@ -123,7 +123,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '辟谷谓不食五谷而以气养，服气谓吐纳天地之气，炼丹谓烧炼金石以成金丹，尸解谓遗形而去。四者皆道教修仙之术。'
       },
       {
-        id: 'wm-280-g4',
+        id: 'wm-294-g4',
         theme: '仙话之书',
         dimension: '同仙书',
         tier: 'purple',
@@ -134,12 +134,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-281',
+    id: 'wm-295',
     dateStr: '2027-11-27',
     title: '第 540 期 · 幽冥篇',
     groups: [
       {
-        id: 'wm-281-g1',
+        id: 'wm-295-g1',
         theme: '冥界之名',
         dimension: '同冥界名',
         tier: 'yellow',
@@ -148,7 +148,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '黄泉为地下之泉而指冥界（“不及黄泉，无相见也”），九泉谓地下深处，幽都为北方冥都（《楚辞·招魂》），地狱为佛教传入后之冥府。四者皆古代冥界之称。'
       },
       {
-        id: 'wm-281-g2',
+        id: 'wm-295-g2',
         theme: '冥府之司',
         dimension: '同冥司名',
         tier: 'green',
@@ -157,7 +157,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '泰山府君为汉魏冥界之主，阎罗王为佛教地狱之主，判官掌生死簿，牛头马面为冥府鬼卒。四者皆冥府职司之神。'
       },
       {
-        id: 'wm-281-g3',
+        id: 'wm-295-g3',
         theme: '生死之说',
         dimension: '同生死名',
         tier: 'blue',
@@ -166,7 +166,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '魂魄谓人之精神（魂为阳神、魄为阴形），三魂七魄为道教魂魄之说，轮回为佛教流转之说，往生为净土宗往生极乐之说。四者皆古代生死观之要。'
       },
       {
-        id: 'wm-281-g4',
+        id: 'wm-295-g4',
         theme: '冥界之书',
         dimension: '同冥书',
         tier: 'purple',
@@ -177,12 +177,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-282',
+    id: 'wm-296',
     dateStr: '2027-11-28',
     title: '第 541 期 · 瑞应篇',
     groups: [
       {
-        id: 'wm-282-g1',
+        id: 'wm-296-g1',
         theme: '祥瑞之目',
         dimension: '同祥瑞名',
         tier: 'yellow',
@@ -191,7 +191,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '嘉禾为异本同穗之禾，甘露为天降之甘美之露，醴泉为味甘如醴之泉，瑞雪为及时之雪（“瑞雪兆丰年”）。四者皆古代所重之祥瑞。'
       },
       {
-        id: 'wm-282-g2',
+        id: 'wm-296-g2',
         theme: '灾异之目',
         dimension: '同灾异名',
         tier: 'green',
@@ -200,7 +200,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '日食为日为之蔽，彗星为妖星而主兵丧，地震为地动，水旱为水涝与干旱。四者皆古代视为天谴之灾异，见历代《五行志》。'
       },
       {
-        id: 'wm-282-g3',
+        id: 'wm-296-g3',
         theme: '符命之说',
         dimension: '同符命名',
         tier: 'blue',
@@ -209,7 +209,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '符命谓天降祥瑞以命人君，图谶为预言吉凶之图与隐语，谶纬为谶书与纬书之合称，河图洛书为古之祥瑞图籍。四者皆汉代政治神学之要。'
       },
       {
-        id: 'wm-282-g4',
+        id: 'wm-296-g4',
         theme: '瑞应之书',
         dimension: '同瑞应书',
         tier: 'purple',
@@ -220,12 +220,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-283',
+    id: 'wm-297',
     dateStr: '2027-11-29',
     title: '第 542 期 · 梦兆篇',
     groups: [
       {
-        id: 'wm-283-g1',
+        id: 'wm-297-g1',
         theme: '梦之种类',
         dimension: '同梦名',
         tier: 'yellow',
@@ -234,7 +234,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《周礼·春官》占梦分六梦：正梦为无所感动而自梦，噩梦为惊愕而梦，思梦为思念而梦，喜梦为喜悦而梦。四者皆六梦之目。'
       },
       {
-        id: 'wm-283-g2',
+        id: 'wm-297-g2',
         theme: '著名之梦',
         dimension: '同梦典名',
         tier: 'green',
@@ -243,7 +243,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '庄周梦蝶而不知周之梦蝶与蝶之梦周，黄粱一梦为吕翁授枕于卢生，南柯一梦为淳于棼梦入槐安国，江郎梦笔为江淹梦得五色笔而文思大进。四者皆著名之梦典。'
       },
       {
-        id: 'wm-283-g3',
+        id: 'wm-297-g3',
         theme: '占梦之书',
         dimension: '同占梦书',
         tier: 'blue',
@@ -252,7 +252,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《周公解梦》为民间占梦之书，明《梦林玄解》集梦占之大成，陈士元《梦占逸旨》考梦之说，敦煌《梦书》为唐代残卷。四书皆占梦之要籍。'
       },
       {
-        id: 'wm-283-g4',
+        id: 'wm-297-g4',
         theme: '梦之哲理',
         dimension: '同梦理名',
         tier: 'purple',
@@ -263,12 +263,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-284',
+    id: 'wm-298',
     dateStr: '2027-11-30',
     title: '第 543 期 · 岁时神篇',
     groups: [
       {
-        id: 'wm-284-g1',
+        id: 'wm-298-g1',
         theme: '岁神之名',
         dimension: '同岁神名',
         tier: 'yellow',
@@ -277,7 +277,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '太岁为古所信仰之岁神，岁星即木星而十二年一周天，值年神为当年司岁之神，太岁头上动土为犯忌之俗谚。四者皆古代岁神信仰之要。'
       },
       {
-        id: 'wm-284-g2',
+        id: 'wm-298-g2',
         theme: '门灶之祀',
         dimension: '同家祀名',
         tier: 'green',
@@ -286,7 +286,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《礼记·祭法》有五祀：户、灶、中霤、门、行。四者举其四——门神守户、灶神司饮食、井神主水、中霤为室中祭祀之位。皆一家之常祀。'
       },
       {
-        id: 'wm-284-g3',
+        id: 'wm-298-g3',
         theme: '驱傩之俗',
         dimension: '同傩俗名',
         tier: 'blue',
@@ -295,7 +295,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '傩为岁末驱疫之礼，方相氏为傩仪中蒙熊皮黄金四目之主角（《周礼·夏官》），傩戏为由傩仪演化之戏，跳钟馗为后世傩俗之遗。四者皆驱傩文化之要。'
       },
       {
-        id: 'wm-284-g4',
+        id: 'wm-298-g4',
         theme: '岁时神之记',
         dimension: '同岁神书',
         tier: 'purple',
@@ -306,12 +306,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-285',
+    id: 'wm-299',
     dateStr: '2027-12-01',
     title: '第 544 期 · 卜筮篇',
     groups: [
       {
-        id: 'wm-285-g1',
+        id: 'wm-299-g1',
         theme: '卜与筮',
         dimension: '同卜筮名',
         tier: 'yellow',
@@ -320,7 +320,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '卜以龟甲灼兆而视其坼，筮以蓍草揲数以成卦。《礼记·曲礼》云“龟为卜，策为筮”。四者皆古代决疑之术。'
       },
       {
-        id: 'wm-285-g2',
+        id: 'wm-299-g2',
         theme: '卜之兆',
         dimension: '同卜兆名',
         tier: 'green',
@@ -329,7 +329,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '兆为龟甲灼后之裂纹，坼为裂纹之形，墨为灼后涂墨以显其纹，坼大为兆之显著者。四者皆占卜之术语，见《周礼·春官·卜师》。'
       },
       {
-        id: 'wm-285-g3',
+        id: 'wm-299-g3',
         theme: '筮之数',
         dimension: '同筮数名',
         tier: 'blue',
@@ -338,7 +338,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《易·系辞》云“大衍之数五十，其用四十有九”，揲蓍为分蓍而数，四营为分二挂一揲四归奇之四步，十八变而成一卦。四者皆揲蓍成卦之法。'
       },
       {
-        id: 'wm-285-g4',
+        id: 'wm-299-g4',
         theme: '卜筮之书',
         dimension: '同卜筮书',
         tier: 'purple',
@@ -349,12 +349,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-286',
+    id: 'wm-300',
     dateStr: '2027-12-02',
     title: '第 545 期 · 相术篇',
     groups: [
       {
-        id: 'wm-286-g1',
+        id: 'wm-300-g1',
         theme: '相术之门',
         dimension: '同相术名',
         tier: 'yellow',
@@ -363,7 +363,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '相面观面部之形色，相手观掌纹，相骨观骨相之奇，相音听声音之清浊。四者皆古代相术之分门。'
       },
       {
-        id: 'wm-286-g2',
+        id: 'wm-300-g2',
         theme: '面相之目',
         dimension: '同面相名',
         tier: 'green',
@@ -372,7 +372,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '天庭为额之中央（“天庭饱满”），地阁为下颏，山根为鼻梁之根，人中和为鼻下唇上之沟。四者皆面相之部位名。'
       },
       {
-        id: 'wm-286-g3',
+        id: 'wm-300-g3',
         theme: '相术之典',
         dimension: '同相典名',
         tier: 'blue',
@@ -381,7 +381,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《麻衣相法》托名麻衣道者而为相术之要，《柳庄相法》为明袁珙所传，《神相全编》集相术之大成，《太清神鉴》为古相书。四书皆相术之要籍。'
       },
       {
-        id: 'wm-286-g4',
+        id: 'wm-300-g4',
         theme: '相术之评',
         dimension: '同相评名',
         tier: 'purple',
@@ -392,12 +392,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-287',
+    id: 'wm-301',
     dateStr: '2027-12-03',
     title: '第 546 期 · 术数篇',
     groups: [
       {
-        id: 'wm-287-g1',
+        id: 'wm-301-g1',
         theme: '术数之门',
         dimension: '同术数名',
         tier: 'yellow',
@@ -406,7 +406,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '星占观星象以占吉凶，风角候风以占，六壬以十二神将占人事，奇门遁甲以九宫八门占。四者皆古代术数之要门。'
       },
       {
-        id: 'wm-287-g2',
+        id: 'wm-301-g2',
         theme: '三式之名',
         dimension: '同三式名',
         tier: 'green',
@@ -415,7 +415,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '太乙、六壬、奇门为“三式”：太乙占国运，雷公式为其一支，六壬式以十二神将占人事，遁甲式以九宫八门占兵事。四者皆以式盘推算之高级术数，古为帝王用兵所重。'
       },
       {
-        id: 'wm-287-g3',
+        id: 'wm-301-g3',
         theme: '式盘之制',
         dimension: '同式盘名',
         tier: 'blue',
@@ -424,7 +424,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '天盘圆而象天，地盘方而象地，八门为休生伤杜景死惊开，九星为天蓬至天英。四者皆式盘之构成要件。'
       },
       {
-        id: 'wm-287-g4',
+        id: 'wm-301-g4',
         theme: '术数之书',
         dimension: '同术数书',
         tier: 'purple',
@@ -435,12 +435,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-288',
+    id: 'wm-302',
     dateStr: '2027-12-04',
     title: '第 547 期 · 巫觋篇',
     groups: [
       {
-        id: 'wm-288-g1',
+        id: 'wm-302-g1',
         theme: '巫者之名',
         dimension: '同巫名',
         tier: 'yellow',
@@ -449,7 +449,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《国语》云“在男曰觋，在女曰巫”：巫为女巫，觋为男巫，祝为掌祭祀祝辞者，卜为掌龟卜者。四者皆古代神职之名。'
       },
       {
-        id: 'wm-288-g2',
+        id: 'wm-302-g2',
         theme: '祭祀之法',
         dimension: '同祭法名',
         tier: 'green',
@@ -458,7 +458,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '燎为燔柴于天，瘗为埋牲于地，沉为沉牲于水，血祭为以牲血涂器。四者皆古代祭祀之法，见《周礼·春官·大宗伯》。'
       },
       {
-        id: 'wm-288-g3',
+        id: 'wm-302-g3',
         theme: '神职之书',
         dimension: '同神职书',
         tier: 'blue',
@@ -467,7 +467,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《周礼》详神职之官，《国语·楚语》辨巫觋之别，《楚辞·九歌》为祭神之乐章，《说文解字》释巫祝之义。四书皆神职研究之要。'
       },
       {
-        id: 'wm-288-g4',
+        id: 'wm-302-g4',
         theme: '祭祀之器',
         dimension: '同祭器名',
         tier: 'purple',
@@ -478,12 +478,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-289',
+    id: 'wm-303',
     dateStr: '2027-12-05',
     title: '第 548 期 · 巫风篇',
     groups: [
       {
-        id: 'wm-289-g1',
+        id: 'wm-303-g1',
         theme: '楚地巫风',
         dimension: '同巫俗名',
         tier: 'yellow',
@@ -492,7 +492,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《汉书·地理志》谓楚地“信巫鬼，重淫祀”，好祀为尚祭祀之风，傩舞为驱疫之舞，招魂俗为呼魂之俗。四者皆楚地巫风之要。'
       },
       {
-        id: 'wm-289-g2',
+        id: 'wm-303-g2',
         theme: '《九歌》诸神',
         dimension: '同九歌名',
         tier: 'green',
@@ -501,7 +501,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《九歌》所祀：东皇太一为最尊之神，云中君为云神，湘君与湘夫人为湘水之神（娥皇女英）。四者皆《九歌》之神目。'
       },
       {
-        id: 'wm-289-g3',
+        id: 'wm-303-g3',
         theme: '巫舞之容',
         dimension: '同巫舞名',
         tier: 'blue',
@@ -510,7 +510,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '《楚辞》状巫舞之态：“灵偃蹇兮姣服”（偃蹇为舞貌），“连蜷”为身姿屈曲，“猗傩”为柔美之态，“屈折”为肢体回旋。四者皆楚辞所记巫舞之容。'
       },
       {
-        id: 'wm-289-g4',
+        id: 'wm-303-g4',
         theme: '楚辞之书',
         dimension: '同楚辞书',
         tier: 'purple',
@@ -521,12 +521,12 @@ export const WENMAI_020: WenmaiPuzzle[] = [
     ]
   },
   {
-    id: 'wm-290',
+    id: 'wm-304',
     dateStr: '2027-12-06',
     title: '第 549 期 · 民间信仰篇',
     groups: [
       {
-        id: 'wm-290-g1',
+        id: 'wm-304-g1',
         theme: '民祀之神',
         dimension: '同民祀名',
         tier: 'yellow',
@@ -535,7 +535,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '门神守户，财神司财，寿星主寿（南极老人星），月老主婚配（《续幽怪录》）。四者皆民间最普遍之信仰神祇。'
       },
       {
-        id: 'wm-290-g2',
+        id: 'wm-304-g2',
         theme: '行业之神',
         dimension: '同行业神',
         tier: 'green',
@@ -544,7 +544,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '鲁班为木工之祖，妈祖为航海之保护神（林默），关帝为商贾所奉之武财神，药王为医药业所祀。四者皆行业神之代表。'
       },
       {
-        id: 'wm-290-g3',
+        id: 'wm-304-g3',
         theme: '地方之神',
         dimension: '同地方神',
         tier: 'blue',
@@ -553,7 +553,7 @@ export const WENMAI_020: WenmaiPuzzle[] = [
         exegesis: '城隍护一城，土地主一方，山神主山林，河伯主河流（《楚辞·九歌》有《河伯》）。四者皆地方性之神祇。'
       },
       {
-        id: 'wm-290-g4',
+        id: 'wm-304-g4',
         theme: '民间信仰之书',
         dimension: '同信仰书',
         tier: 'purple',
